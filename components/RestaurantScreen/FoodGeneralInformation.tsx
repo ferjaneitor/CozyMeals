@@ -74,7 +74,7 @@ const FoodGeneralInformation: React.FC<FoodGeneralInformationProps> = ({
 const styles = StyleSheet.create({
   generalInformationDiv: {
       backgroundColor: '#fef4f0',
-      padding: 20,
+      padding: 0,
       borderRadius: 10,
       width: '100%',
   },
@@ -96,17 +96,16 @@ const styles = StyleSheet.create({
       marginTop: 10,
   },
   restaurantProfilePhoto: {
-      width: 30,
-      height: 30,
-      padding: 5,
+      width: 25,
+      height: 25,
       marginRight: 5,
   },
   restaurantNameTypeDiv: {
       flexDirection: 'column',
-      marginLeft: 10,
+      marginLeft: 0,
   },
   restaurantName: {
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: 'bold',
       color: '#513A2C',
   },
@@ -117,13 +116,13 @@ const styles = StyleSheet.create({
   contactIcon: {
       width: 25,
       height: 25,
-      padding: 10,
-      marginRight: 15,
+      marginLeft: 20,
   },
   restaurantContactInfoDiv: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
+      marginLeft:40,
   },
   descriptionDiv: {
       margin: 20,
@@ -135,14 +134,14 @@ const styles = StyleSheet.create({
       marginBottom: 10,
   },
   descriptionText: {
-      fontSize: 18,
+      fontSize: 16,
       color: '#513A2C',
       marginTop: 20,
   },
   ingredientesInfoGeneralDiv: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'space-between',
-      margin: 20,
+      marginBottom: 20,
       borderLeftWidth: 0,
       borderRightWidth: 0,
       borderWidth: 1,
@@ -157,9 +156,10 @@ const styles = StyleSheet.create({
   },
   ListaDeIngredientes: {
       flexDirection: 'column',
-      marginLeft: 40,
+      marginLeft: 20,
   },
   generalInfo: {
+      marginTop:30,
       flexDirection: 'column',
   },
 })

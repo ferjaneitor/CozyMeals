@@ -1,9 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import { View, Text, SafeAreaView, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useFonts, Merienda_400Regular,Merienda_700Bold } from '@expo-google-fonts/merienda';
-import { LondrinaOutline_400Regular } from '@expo-google-fonts/londrina-outline';
-import AppLoading from 'expo-app-loading';
 import RestaurantFoodDisplay from '../components/RestaurantScreen/RestaurantFoodDisplay';
 import HeaderStyle from '../components/HeaderStyle';
 
@@ -30,6 +27,7 @@ const RestaurantScreen= () => {
           Ingredients={['Masa de Maiz','Relleno de Carne de Puerco','Salsa Roja', 'Bolsa de Salsa (Opcional)']}
           Date='22 de Julio del 2024'
           ExpirationDate='25 de julio del 2024'
+          rating={4.5}
         />
       </ScrollView>
     </SafeAreaView>

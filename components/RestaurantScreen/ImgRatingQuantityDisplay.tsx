@@ -5,20 +5,21 @@ interface ImgRatingQuantityDisplayProps{
     src: any
     quantity:number
     RestaurantName: string
+    rating:number
 }
 
-const ImgRatingQuantityDisplay: React.FC<ImgRatingQuantityDisplayProps> = ({src,quantity, RestaurantName}) => {
+const ImgRatingQuantityDisplay: React.FC<ImgRatingQuantityDisplayProps> = ({src,quantity, RestaurantName, rating}) => {
   return (
     <View style={styles.imgRatingQuantityDiv}>
       <View style={styles.foodImgDiv}>
-        <Text style={styles.foodImgDivText}>Donador: Cocina Economica</Text>
+        <Text style={styles.foodImgDivText}>Donador: {RestaurantName}</Text>
         <Image source={src} style={styles.foodImage}/>
       </View>
       <View style={styles.ratingQuantityDiv}>
         <Text style={styles.ratingQuantityText}>Cantidad: {quantity}</Text>
         <View style={styles.ratingDiv}>
             <Image source={require('../../assets/Images/star.png')} style={styles.starIcon} />
-            <Text style={styles.ratingText}>4.5</Text>
+            <Text style={styles.ratingText}>{rating}</Text>
         </View>
       </View>
     </View>
@@ -28,31 +29,34 @@ const ImgRatingQuantityDisplay: React.FC<ImgRatingQuantityDisplayProps> = ({src,
 const styles = StyleSheet.create({
     imgRatingQuantityDiv: {
         flexDirection: 'row',
+        marginBottom:30,
     },
     foodImgDiv: {
-        paddingLeft: 40,
+        paddingLeft: 15,
         flexDirection: 'column',
         alignItems: 'center',
     },
     foodImgDivText: {
         fontSize: 20,
         color: '#F2DCC2',
-        marginLeft: 10,
+        marginLeft: 0,
+        width: '100%',
     },
     foodImage: {
         width: '90%',
+        height: 150,
         borderRadius: 15,
         marginTop: 20,
     },
     ratingQuantityDiv: {
         flexDirection: 'column',
         alignItems: 'center',
-        marginRight: 20,
-        width: 200,
+        marginRight: 0,
+        width: '38%',
     },
     ratingQuantityText: {
         padding: 10,
-        fontSize: 20,
+        fontSize: 18,
         color: '#F2DCC2',
     },
     ratingDiv: {
@@ -68,10 +72,10 @@ const styles = StyleSheet.create({
     starIcon: {
         width: 20,
         height: 20,
-        padding: 6,
+        padding: 0,
     },
     ratingText: {
-        fontSize: 30,
+        fontSize: 20,
         color: '#F2DCC2',
         fontWeight: 'bold',
     },
