@@ -12,13 +12,17 @@
       "backgroundColor": "#A9744C"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+                "NSLocationWhenInUseUsageDescription": "We need your location to show your position on the map."
+            }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/Images/CozyMealsLogo.png",
         "backgroundColor": "#A9744C"
-      }
+      },
+      "permissions": ["ACCESS_FINE_LOCATION"]
     },
     "web": {
       "favicon": "./assets/favicon.png"

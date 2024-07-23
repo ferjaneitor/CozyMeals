@@ -4,6 +4,9 @@ import HomeScreen from './Screens/HomeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import RestaurantScreen from './Screens/RestaurantScreen';
+import MapScreen from './Screens/MapScreen';
+import SingInScreen from './Screens/SingInScreen';
+import SingUpScreen from './Screens/SingUpScreen';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +18,9 @@ export default function App() {
         <Stack.Screen name="Restaurant" component={RestaurantScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Map" component={MapScreen} />
+        <Stack.Screen name="SingIn" component={SingInScreen} />
+        <Stack.Screen name="SingUp" component={SingUpScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

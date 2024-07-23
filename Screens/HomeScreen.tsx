@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TextInput, Image, ScrollView } from 'react-native';
+import { View, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import React, { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import SearchBar from '../components/HomeScreen/SearchBar';

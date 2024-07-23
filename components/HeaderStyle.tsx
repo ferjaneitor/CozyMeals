@@ -1,14 +1,26 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useFonts, Merienda_400Regular } from '@expo-google-fonts/merienda';
 import { LondrinaOutline_400Regular } from '@expo-google-fonts/londrina-outline';
 import AppLoading from 'expo-app-loading';
+import GetLocation from '../Scripts/GetLocation';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 interface HeaderStyleProps {
   LocationBar: boolean;
 }
 
 const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar }) => {
+
+  const [locationData, setLocationData] = useState<{ latitude: number, longitude: number } | null>(null);
+  const [address, setAddress] = useState<string | null>(null);
+
+  const handleLocationUpdate = (location: {latitude:number, longitude:number },address: string | null ) => {
+    setLocationData(location)
+    setAddress(address)
+  }
+
   let [fontsLoaded] = useFonts({
     Merienda_400Regular,
     LondrinaOutline_400Regular,
@@ -18,26 +30,37 @@ const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar }) => {
     return <AppLoading />;
   }
 
+  const navigation: any = useNavigation();
+
   return (
     <View style={styles.header}>
+      <GetLocation onLocationUpdate={handleLocationUpdate}/>
       <View style={styles.menuDiv}>
         <Image source={require('../assets/Images/menu-8.png')} style={styles.menuImage} />
       </View>
       <View style={styles.appName}>
-        <Text style={styles.appNameText}>CozyMeals</Text>
+        <TouchableOpacity onPress={(()=>{navigation.navigate('Home')})}>
+          <Text style={styles.appNameText}>CozyMeals</Text>
+        </TouchableOpacity>
         {LocationBar && (
-          <View style={styles.ubicacionDiv}>
-            <Image source={require('../assets/Images/position-marker.png')} style={styles.ubicacionIcon} />
+          <View style={styles.ubicacionDiv} >
+            <Image source={require('../assets/Images/position-marker.png')} style={styles.ubicacionIcon}/>
             <View style={styles.ubicacionTextDiv}>
               <Text style={styles.ubicacionActual}>Ubicacion Actual</Text>
-              <Text style={styles.ubicacionCalle}>Ignasio Sandoval</Text>
+              <Text style={styles.ubicacionCalle}>{locationData?.latitude}</Text>
+              <Text style={styles.ubicacionCalle}>{locationData?.longitude}</Text>
+              <Text style={styles.ubicacionCalle}>{address}</Text>
             </View>
-            <Image source={require('../assets/Images/down-arrow.png')} style={styles.ubicacionIcon} />
+            <TouchableOpacity onPress={() => {navigation.navigate('Map')}}>
+              <Image source={require('../assets/Images/down-arrow.png')} style={styles.ubicacionIcon} />
+            </TouchableOpacity>
           </View>
         )}
       </View>
       <View style={styles.profileImg}>
-        <Image source={require('../assets/Images/profile.png')} style={styles.profileImage} />
+        <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
+          <Image source={require('../assets/Images/profile.png')} style={styles.profileImage} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -86,7 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   ubicacionCalle: {
-    fontSize: 18,
+    fontSize: 14,
   },
   profileImg: {
     justifyContent: 'flex-end',
