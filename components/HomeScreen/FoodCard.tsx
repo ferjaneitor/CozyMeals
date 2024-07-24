@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { useAppContext } from '../../Scripts/AppContext';
+import { useNavigation } from '@react-navigation/native';
 
 interface FoodCardProps {
   src: any; // change to any to accommodate require
@@ -8,8 +10,18 @@ interface FoodCardProps {
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({ src, title, description }) => {
+
+  const navigation: any = useNavigation();
+
+  const {setTempData} = useAppContext()
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=> {
+      setTempData(title)
+      navigation.navigate('EspecificMeal')
+      console.log("🚀 ~ setTempData:", setTempData)
+      console.log("🚀 ~ title:", title)
+    }}>
       <View style={styles.individualFoodDisplayImgDiv}>
         <Image source={src} style={styles.foodDisplayImg} />
         <View style={styles.foodDescriptionDiv}>

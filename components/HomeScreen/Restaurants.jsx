@@ -1,45 +1,20 @@
 import { ScrollView } from 'react-native';
 import React from 'react';
 import RestaurantCard from './RestaurantCard';
+import { fakeData } from '../../Data/fajeData';
 
 const Restaurants = () => {
   return (
     <ScrollView horizontal={true}>
-      <RestaurantCard 
-        src={require('../../assets/Images/sombrillas-restaurantes-en-centro-de-colima.webp')} 
-        title={'Platillos Saludables'} 
-        description={'Restaurante local'} 
-      />
-      <RestaurantCard 
-        src={require('../../assets/Images/sombrillas-restaurantes-en-centro-de-colima.webp')} 
-        title={'Platillos Saludables'} 
-        description={'Restaurante local'} 
-      />
-      <RestaurantCard 
-        src={require('../../assets/Images/sombrillas-restaurantes-en-centro-de-colima.webp')} 
-        title={'Platillos Saludables'} 
-        description={'Restaurante local'} 
-      />
-      <RestaurantCard 
-        src={require('../../assets/Images/sombrillas-restaurantes-en-centro-de-colima.webp')} 
-        title={'Platillos Saludables'} 
-        description={'Restaurante local'} 
-      />
-      <RestaurantCard 
-        src={require('../../assets/Images/sombrillas-restaurantes-en-centro-de-colima.webp')} 
-        title={'Platillos Saludables'} 
-        description={'Restaurante local'} 
-      />
-      <RestaurantCard 
-        src={require('../../assets/Images/sombrillas-restaurantes-en-centro-de-colima.webp')} 
-        title={'Platillos Saludables'} 
-        description={'Restaurante local'} 
-      />
-      <RestaurantCard 
-        src={require('../../assets/Images/sombrillas-restaurantes-en-centro-de-colima.webp')} 
-        title={'Platillos Saludables'} 
-        description={'Restaurante local'} 
-      />
+      {fakeData.map(e=>{
+        return(
+          <RestaurantCard 
+            src={e.Img} 
+            title={e.Name} 
+            description={e.Type} 
+          />
+        )
+      })}
     </ScrollView>
   )
 }

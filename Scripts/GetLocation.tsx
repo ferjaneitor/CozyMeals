@@ -17,9 +17,13 @@ const GetLocation: React.FC<GetLocationProps> = ({ onLocationUpdate }) => {
                 latitude,
                 longitude
             });
+                console.log("🚀 ~ getAddress ~ longitude:", longitude)
+                console.log("🚀 ~ getAddress ~ latitude:", latitude)
+            console.log("🚀 ~ getAddress ~ addressArray:", addressArray)
             if (addressArray.length > 0) {
                 const address = addressArray[0];
                 const formattedAddress = `${address.street || ''}, ${address.city || ''}, ${address.region || ''}, ${address.country || ''}`;
+                console.log("🚀 ~ getAddress ~ formattedAddress:", formattedAddress)
                 onLocationUpdate({ latitude, longitude }, formattedAddress);
             } else {
                 onLocationUpdate({ latitude, longitude }, 'No address found');
@@ -36,7 +40,7 @@ const GetLocation: React.FC<GetLocationProps> = ({ onLocationUpdate }) => {
             latitude: coords.latitude,
             longitude: coords.longitude
         });
-        getAddress(coords.latitude, coords.longitude);
+        await getAddress(coords.latitude, coords.longitude);
     }, []);
 
     useEffect(() => {
@@ -46,15 +50,16 @@ const GetLocation: React.FC<GetLocationProps> = ({ onLocationUpdate }) => {
                 console.log('Permission to access location was denied');
                 return;
             }
+            console.log("estoy dentro del useEffect")
 
             // Get location immediately on component mount
             getLocation();
 
-            // Set interval to get location every 5 seconds
-            const intervalId = setInterval(getLocation, 5000);
+            // // Set interval to get location every 5 seconds
+            // const intervalId = setInterval(getLocation, 5000);
 
-            // Clear interval on component unmount
-            return () => clearInterval(intervalId);
+            // // Clear interval on component unmount
+            // return () => clearInterval(intervalId);
         })();
     }, [getLocation]);
 

@@ -6,14 +6,14 @@ import FoodGeneralInformation from './FoodGeneralInformation';
 interface RestaurantFoodDisplayProps{
     title:string
     source: any
-    quantity:number
+    quantity:string
     RestaurantName: string
     RestaurantType: String
     Description:string
     Ingredients: string[]
     Date:string
     ExpirationDate:string,
-    rating:number,
+    rating:string,
 }
 
 const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({

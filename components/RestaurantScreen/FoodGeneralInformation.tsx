@@ -8,7 +8,7 @@ interface FoodGeneralInformationProps{
   Ingredients: string[]
   Date: string
   ExpirationDate: string
-  Quantity:number
+  Quantity:string
 }
 
 const FoodGeneralInformation: React.FC<FoodGeneralInformationProps> = ({
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       fontSize: 20,
       marginBottom: 10,
+      width:100,
   },
   imgNameDiv: {
       flexDirection: 'row',
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
       fontSize: 14,
       fontWeight: 'bold',
       color: '#513A2C',
+      width:150,
   },
   restaurantType: {
       fontSize: 12,
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
   contactIcon: {
       width: 25,
       height: 25,
-      marginLeft: 20,
+      marginLeft: 10,
   },
   restaurantContactInfoDiv: {
       flexDirection: 'row',

@@ -3,9 +3,9 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 interface ImgRatingQuantityDisplayProps{
     src: any
-    quantity:number
+    quantity:string
     RestaurantName: string
-    rating:number
+    rating:string
 }
 
 const ImgRatingQuantityDisplay: React.FC<ImgRatingQuantityDisplayProps> = ({src,quantity, RestaurantName, rating}) => {
@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     foodImgDivText: {
-        fontSize: 20,
+        fontSize: 18,
         color: '#F2DCC2',
         marginLeft: 0,
-        width: '100%',
+        width: 200,
     },
     foodImage: {
         width: '90%',

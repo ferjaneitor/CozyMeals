@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { AppContext, useAppContext } from '../../Scripts/AppContext';
 
 interface RestaurantCardProps {
   src: any;
@@ -8,13 +9,20 @@ interface RestaurantCardProps {
   description: string;
 }
 
+
 const RestaurantCard: React.FC<RestaurantCardProps> = ({ src, title, description }) => {
   const navigation: any = useNavigation();
+
+  const {setTempData} = useAppContext()
+
 
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('Restaurant');
+        navigation.navigate('Restaurant')
+        setTempData(title)
+        console.log("🚀 ~ handlePress ~ title:", title)
+        console.log("🚀 ~ handlePress ~ setTempData:", setTempData)
       }}
     >
       <View style={styles.restaurantDisplayImgDiv}>

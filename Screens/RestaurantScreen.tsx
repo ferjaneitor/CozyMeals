@@ -1,10 +1,16 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useContext, useLayoutEffect } from 'react';
 import { View, Text, SafeAreaView, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import RestaurantFoodDisplay from '../components/RestaurantScreen/RestaurantFoodDisplay';
 import HeaderStyle from '../components/HeaderStyle';
+import { AppContext, useAppContext } from '../Scripts/AppContext';
+import { fakeData } from '../Data/fajeData';
 
 const RestaurantScreen= () => {
+
+  const {tempData} = useAppContext()
+  console.log("🚀 ~ RestaurantScreen ~ tempData:", tempData)
+
   const navigation = useNavigation()
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -17,18 +23,25 @@ const RestaurantScreen= () => {
       <HeaderStyle LocationBar={false}/>
       <ScrollView contentContainerStyle={styles.mainBody}>
         <Text style={styles.ultimasDonacionesText}>| Últimas Donaciones</Text>
-        <RestaurantFoodDisplay 
-          title='Tamal'
-          source={require('../assets/Images/bx928xenrwxyd44pgyza.webp')}
-          quantity={5}
-          RestaurantName='Cocina Economica'
-          RestaurantType='Restaurante'
-          Description='Es un plato tradicional de la cocina latinoamericana. Consisten en masa de maíz rellena con una variedad de ingredientes, como carne de cerdo o pollo, chiles, verduras, y se envuelven en hojas de maíz o plátano para luego ser cocidos al vapor. Los tamales son un alimento muy versátil y popular en celebraciones especiales, y cada región tiene su propia versión única de este delicioso platillo. ¡Son una delicia que no te puedes perder!'
-          Ingredients={['Masa de Maiz','Relleno de Carne de Puerco','Salsa Roja', 'Bolsa de Salsa (Opcional)']}
-          Date='22 de Julio del 2024'
-          ExpirationDate='25 de julio del 2024'
-          rating={4.5}
-        />
+        {fakeData.map(dataItem => {
+            if(dataItem.Name === tempData){
+              return dataItem.Meals.map(meal => (
+                <RestaurantFoodDisplay 
+                  key={meal.Name} // Añadir una key es importante para listas en React
+                  title={meal.Name}
+                  source={meal.Img}
+                  quantity={meal.Quantity}
+                  RestaurantName={meal.RestaurantName}
+                  RestaurantType={meal.RestaurantType}
+                  Description={meal.Description}
+                  Ingredients={meal.IngridientsList}
+                  Date={meal.ProductionDate}
+                  ExpirationDate={meal.ExpirationDate}
+                  rating={meal.Rating}
+                />
+              ));
+            }
+          })}
       </ScrollView>
     </SafeAreaView>
   )

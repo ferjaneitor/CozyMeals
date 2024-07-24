@@ -3,9 +3,10 @@ import React, { useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import HeaderStyle from '../components/HeaderStyle'
 import { useNavigation } from '@react-navigation/native'
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import RestaurantName from '../components/MapScreen/RestaurantName'
 import GetLocation from '../Scripts/GetLocation'
+import { fakeData } from '../Data/fajeData'
 
 const MapScreen = () => {
 
@@ -13,6 +14,7 @@ const MapScreen = () => {
   const [address, setAddress] = useState<string | null>(null);
 
   const handleLocationUpdate = (location: {latitude:number, longitude:number },address: string | null ) => {
+    console.log("🚀 ~ handleLocationUpdate ~ location:", location)
     setLocationData(location)
     setAddress(address)
   }
@@ -31,36 +33,34 @@ const MapScreen = () => {
       });
     }, []);
 
+    console.log("rendering template")
   return (
     <SafeAreaView style={styles.container}>
       <GetLocation onLocationUpdate={handleLocationUpdate}/>
         <HeaderStyle LocationBar={true}/>
-        <MapView style={styles.map} initialRegion={{
-          latitude: locationData?.latitude || 0,
-          longitude: locationData?.longitude || 0,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.09,
-        }}/>
+        {locationData !== null && (
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: locationData.latitude,
+              longitude: locationData.longitude,
+              latitudeDelta: 0.09,
+              longitudeDelta: 0.09,
+            }}><Marker draggable coordinate={locationData}/>
+              
+            </MapView>
+        )}
         <View style={[{ marginTop: isOpen ? -200 : 5 },{ width: isOpen ? '100%' : '95%' },
         { height: isOpen ? 400 : 100 }, styles.LocateRestaurantsBar]}>
       <Text style={styles.header}>Comedores cercanos a ti</Text>
       {isOpen && 
         <ScrollView style={styles.RestaurantName}>
             <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
+            {fakeData.map(e => {
+              return(
+                <RestaurantName Name={e.Name} src={require('../assets/Images/award-certificate.png')}/>
+              )
+            })}
         </ScrollView>
       }
       <TouchableOpacity onPress={()=>{OpenClose()}}>
