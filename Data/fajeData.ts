@@ -40,7 +40,7 @@ export const fakeData: Restaurant[] = [
         Meals: [
             {
                 Name: 'Tacos de Birria',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Tacos de Birria.jpeg'),
                 RestaurantName: 'Restaurante El Sabor de Colima',
                 RestaurantType: 'Mexicana',
                 ExpirationDate: '2024-07-25',
@@ -57,7 +57,7 @@ export const fakeData: Restaurant[] = [
             },
             {
                 Name: 'Enchiladas Verdes',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Enchiladas Verdes.jpeg'),
                 RestaurantName: 'Restaurante El Sabor de Colima',
                 RestaurantType: 'Mexicana',
                 ExpirationDate: '2024-07-26',
@@ -89,7 +89,7 @@ export const fakeData: Restaurant[] = [
         Meals: [
             {
                 Name: 'Sopa de Fideo',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Sopa de Fideo.jpeg'),
                 RestaurantName: 'Comida Casera La Abuela',
                 RestaurantType: 'Casera',
                 ExpirationDate: '2024-07-24',
@@ -106,7 +106,7 @@ export const fakeData: Restaurant[] = [
             },
             {
                 Name: 'Arroz con Pollo',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Arroz con Pollo.jpeg'),
                 RestaurantName: 'Comida Casera La Abuela',
                 RestaurantType: 'Casera',
                 ExpirationDate: '2024-07-25',
@@ -138,7 +138,7 @@ export const fakeData: Restaurant[] = [
         Meals: [
             {
                 Name: 'Pizza Margherita',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Pizza Margherita.jpeg'),
                 RestaurantName: 'Pizzeria Colima',
                 RestaurantType: 'Italiana',
                 ExpirationDate: '2024-07-25',
@@ -155,7 +155,7 @@ export const fakeData: Restaurant[] = [
             },
             {
                 Name: 'Lasagna',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Lasagna.jpeg'),
                 RestaurantName: 'Pizzeria Colima',
                 RestaurantType: 'Italiana',
                 ExpirationDate: '2024-07-26',
@@ -187,7 +187,7 @@ export const fakeData: Restaurant[] = [
         Meals: [
             {
                 Name: 'Barbacoa de Res',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Barbacoa de Res.jpeg'),
                 RestaurantName: 'Barbacoa El Jarocho',
                 RestaurantType: 'Mexicana',
                 ExpirationDate: '2024-07-27',
@@ -205,7 +205,7 @@ export const fakeData: Restaurant[] = [
             },
             {
                 Name: 'Consomé de Barbacoa',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Consome de Barbacoa.jpeg'),
                 RestaurantName: 'Barbacoa El Jarocho',
                 RestaurantType: 'Mexicana',
                 ExpirationDate: '2024-07-28',
@@ -237,7 +237,7 @@ export const fakeData: Restaurant[] = [
         Meals: [
             {
                 Name: 'Pan de Elote',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Pan de Elote.jpeg'),
                 RestaurantName: 'Café y Panadería La Esperanza',
                 RestaurantType: 'Café y Panadería',
                 ExpirationDate: '2024-07-24',
@@ -254,7 +254,7 @@ export const fakeData: Restaurant[] = [
             },
             {
                 Name: 'Café Americano',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Cafe Americano.jpeg'),
                 RestaurantName: 'Café y Panadería La Esperanza',
                 RestaurantType: 'Café y Panadería',
                 ExpirationDate: '2024-07-25',
@@ -284,7 +284,7 @@ export const fakeData: Restaurant[] = [
         Meals: [
             {
                 Name: 'Tacos al Pastor',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Tacos al Pastor.jpg'),
                 RestaurantName: 'El Taco Loco',
                 RestaurantType: 'Tacos',
                 ExpirationDate: '2024-07-25',
@@ -302,7 +302,7 @@ export const fakeData: Restaurant[] = [
             },
             {
                 Name: 'Tacos de Carnitas',
-                Img: "require('../assets/Images/fondo.png')",
+                Img: require('../assets/Images/MealsImg/Tacos de Carnitas.jpeg'),
                 RestaurantName: 'El Taco Loco',
                 RestaurantType: 'Tacos',
                 ExpirationDate: '2024-07-26',
