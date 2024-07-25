@@ -1,18 +1,34 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { checkPassWord, checkUserName, profileData } from '../Data/profileData';
 
 const SingInScreen = () => {
 
   const navigation = useNavigation();
+
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  const Validate = () =>{
+    if (checkUserName() && checkPassWord()) {
+      if ((password === profileData.passWord) && (userName === profileData.userName)) {
+        profileData.identified = true
+      }else {
+        alert('Nombre de usuario o contraseña incorrectos');
+      }
+    }else {
+      alert('Por favor ingrese datos válidos');
+    }
+  }
 
   return (
     <ImageBackground
@@ -25,23 +41,30 @@ const SingInScreen = () => {
           <Text style={styles.ParaContinuarText}>Para Continuar</Text>
         </View>
         <View style={styles.textButtonsContainer}>
-          <TextInput placeholder='Nombre de Usuario' style={styles.inputText}/>
-          <TextInput placeholder='Contraseña' style={styles.inputText}/>
+          <TextInput 
+            placeholder='Nombre de Usuario' 
+            style={styles.inputText} 
+            placeholderTextColor={'#513A2C'}
+            value={userName}
+            onChangeText={setUserName} 
+          />
+          <TextInput 
+            placeholder='Contraseña' 
+            style={styles.inputText} 
+            placeholderTextColor={'#513A2C'}
+            value={password}
+            onChangeText={setPassword} 
+          />
         </View>
         <View style={styles.textButtonsContainer}>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>
+            <Text 
+              style={styles.buttonText}
+              onPress={()=>{Validate()}}
+            >
               Log-in
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>
-              Certificados
-            </Text>
-          </TouchableOpacity>
-          <Text style={styles.extrasText}>
-            *ES OBLIGATORIO PARA COMEDORES COMUNITARIOS*
-          </Text>
         </View>
       </SafeAreaView>
     </ImageBackground>
@@ -92,7 +115,7 @@ const styles = StyleSheet.create({
     zIndex:2,
     marginTop:20,
     color: '#513A2C',
-    width:'90%',
+    width:350,
     borderWidth:2,
     borderTopWidth:0,
     borderRightWidth:0,

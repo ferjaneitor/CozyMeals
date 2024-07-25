@@ -8,13 +8,15 @@ interface ProfileData {
     passWord: string;
     gmail: string;
     cart: CartItem[];
+    identified:boolean
 }
 
 export const profileData: ProfileData = {
     userName: '',
     passWord: '',
     gmail: '',
-    cart: []
+    cart: [],
+    identified:false
 }
 
 export const checkUserName = (): boolean => {
@@ -45,6 +47,22 @@ export const setGmail = (gmail: string): void => {
     }
     profileData.gmail = gmail
 }
+
+export const Validate = (email: string, password: string, confirmPassword: string, userName: string): void => {
+    try {
+        setGmail(email);
+        if (password === confirmPassword) {
+            setPassWord(password);
+        } else {
+            throw new Error('Passwords do not match');
+        }
+        setUserName(userName);
+        profileData.identified = true;
+    } catch (error: any) {
+        profileData.identified = false;
+        console.error(error.message);
+    }
+};
 
 export const add2Cart = (meal: string, quantity: number): void => {
     if (typeof meal !== 'string' || meal.trim() === '' || typeof quantity !== 'number' || quantity <= 0) {
