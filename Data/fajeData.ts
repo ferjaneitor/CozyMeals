@@ -17,8 +17,8 @@ interface Restaurant {
     Img: any;
     Type: string;
     Address: string;
-    Longitud: string;
-    Latitud: string;
+    Longitud: number;
+    Latitud: number;
     Rating: string;
     Meals: Meal[];
     Info: {
@@ -34,8 +34,8 @@ export const fakeData: Restaurant[] = [
         Img: require('../assets/Images/RestaurantImg/Restaurante El Sabor de Colima.jpg'),
         Type: 'Mexicana',
         Address: 'Av. Constitución 123, Colima',
-        Longitud: '-103.7267',
-        Latitud: '19.2433',
+        Longitud: -103.7267,
+        Latitud: 19.2433,
         Rating: '4.5',
         Meals: [
             {
@@ -83,8 +83,8 @@ export const fakeData: Restaurant[] = [
         Img: require('../assets/Images/RestaurantImg/Comida Casera La Abuela.jpeg'),
         Type: 'Casera',
         Address: 'Calle Hidalgo 456, Villa de Álvarez',
-        Longitud: '-103.7367',
-        Latitud: '19.2633',
+        Longitud: -103.7367,
+        Latitud: 19.2633,
         Rating: '4.8',
         Meals: [
             {
@@ -132,8 +132,8 @@ export const fakeData: Restaurant[] = [
         Img: require('../assets/Images/RestaurantImg/Pizzeria Colima.jpeg'),
         Type: 'Italiana',
         Address: 'Blvd. Camino Real 789, Colima',
-        Longitud: '-103.7467',
-        Latitud: '19.2733',
+        Longitud: -103.7467,
+        Latitud: 19.2733,
         Rating: '4.4',
         Meals: [
             {
@@ -181,8 +181,8 @@ export const fakeData: Restaurant[] = [
         Img: require('../assets/Images/RestaurantImg/Barbacoa El Jarocho.jpg'),
         Type: 'Mexicana',
         Address: 'Calle Zapata 321, Colima',
-        Longitud: '-103.8167',
-        Latitud: '19.3433',
+        Longitud: -103.8167,
+        Latitud: 19.3433,
         Rating: '4.6',
         Meals: [
             {
@@ -231,8 +231,8 @@ export const fakeData: Restaurant[] = [
         Img: require('../assets/Images/RestaurantImg/Café y Panadería La Esperanza.jpg'),
         Type: 'Café y Panadería',
         Address: 'Calle Madero 987, Colima',
-        Longitud: '-103.7667',
-        Latitud: '19.2933',
+        Longitud: -103.7667,
+        Latitud: 19.2933,
         Rating: '4.9',
         Meals: [
             {
@@ -278,8 +278,8 @@ export const fakeData: Restaurant[] = [
         Img: require('../assets/Images/RestaurantImg/El Taco Loco.jpg'),
         Type: 'Tacos',
         Address: 'Av. Niños Héroes 654, Colima',
-        Longitud: '-103.7767',
-        Latitud: '19.3033',
+        Longitud: -103.7767,
+        Latitud: 19.3033,
         Rating: '4.6',
         Meals: [
             {

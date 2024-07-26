@@ -1,3 +1,5 @@
+
+
 interface CartItem {
     name: string;
     quantity: number;
@@ -16,7 +18,7 @@ export const profileData: ProfileData = {
     passWord: '',
     gmail: '',
     cart: [],
-    identified:false
+    identified:true
 }
 
 export const checkUserName = (): boolean => {
@@ -68,7 +70,16 @@ export const add2Cart = (meal: string, quantity: number): void => {
     if (typeof meal !== 'string' || meal.trim() === '' || typeof quantity !== 'number' || quantity <= 0) {
         throw new Error('Invalid meal or quantity')
     }
-    profileData.cart.push({ name: meal, quantity: quantity })
+     // Busca el producto en el carrito usando el nombre de la comida
+     const productIndex = profileData.cart.findIndex(product => product.name === meal);
+
+     if (productIndex !== -1) {
+         // Si el producto ya existe en el carrito, actualiza la cantidad
+         profileData.cart[productIndex].quantity += quantity;
+     } else {
+         // Si el producto no existe en el carrito, agrégalo
+         profileData.cart.push({ name: meal, quantity: quantity });
+     }
 }
 
 export const updateQuantity = (mealName: string, sum: boolean): void => {

@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
 import { profileData, setGmail, setPassWord, setUserName, Validate } from '../Data/profileData';
+import { useAppContext } from '../Scripts/AppContext';
 
 const SingUpScreen = () => {
 
@@ -12,6 +13,8 @@ const SingUpScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
 
   const navigation = useNavigation();
+
+  const {setIdentified} =useAppContext()
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -23,9 +26,10 @@ const SingUpScreen = () => {
     try {
       Validate(email, password, confirmPassword, userName);
       console.log('Profile Data:', profileData);
-  } catch (error:any) {
-      console.error('Validation failed:', error.message);
-  }
+      setIdentified(true)
+    } catch (error:any) {
+        console.error('Validation failed:', error.message);
+    }
   }
 
   return (
@@ -52,7 +56,6 @@ const SingUpScreen = () => {
             onChangeText={setEmail}
           />
           <TextInput 
-            
             placeholder='Contraseña' 
             style={styles.inputText}
             value={password}

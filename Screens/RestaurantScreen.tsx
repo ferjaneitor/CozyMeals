@@ -20,7 +20,7 @@ const RestaurantScreen= () => {
 
   return(
     <SafeAreaView style={styles.container}>
-      <HeaderStyle LocationBar={false}/>
+      <HeaderStyle LocationBar={false} MenuBar={false}/>
       <ScrollView contentContainerStyle={styles.mainBody}>
         <Text style={styles.ultimasDonacionesText}>| Últimas Donaciones</Text>
         {fakeData.map(dataItem => {

@@ -7,6 +7,8 @@ import MapView, { Marker } from 'react-native-maps';
 import RestaurantName from '../components/MapScreen/RestaurantName'
 import GetLocation from '../Scripts/GetLocation'
 import { fakeData } from '../Data/fajeData'
+import { useAppContext } from '../Scripts/AppContext'
+import { profileData } from '../Data/profileData'
 
 const MapScreen = () => {
 
@@ -20,6 +22,7 @@ const MapScreen = () => {
   }
 
   const [isOpen,setIsOpen] = useState(false)
+  const {tempData} = useAppContext()
 
   const OpenClose = () =>{
       setIsOpen(!isOpen)
@@ -37,7 +40,7 @@ const MapScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <GetLocation onLocationUpdate={handleLocationUpdate}/>
-        <HeaderStyle LocationBar={true}/>
+        <HeaderStyle LocationBar={true} MenuBar={false}/>
         {locationData !== null && (
           <MapView
             style={styles.map}
@@ -47,7 +50,31 @@ const MapScreen = () => {
               latitudeDelta: 0.09,
               longitudeDelta: 0.09,
             }}><Marker draggable coordinate={locationData}/>
-              
+              {/* {(tempData === null) ? (
+                    fakeData.map(locations => {
+                        if (profileData.cart.some(item => item.name === locations.Name))  {
+                            const markerLocation = {
+                                latitude: locations.Latitud,
+                                longitude: locations.Longitud
+                            }
+                            return (
+                                <Marker coordinate={markerLocation}/>
+                            )
+                        }
+                    })
+                ) : (
+                    fakeData.map(locations => {
+                        if (locations.Name === tempData) {
+                            const markerLocation = {
+                                latitude: locations.Latitud,
+                                longitude: locations.Longitud
+                            }
+                            return (
+                                <Marker coordinate={markerLocation}/>
+                            )
+                        }
+                    })
+                )} */}
             </MapView>
         )}
         <View style={[{ marginTop: isOpen ? -200 : 5 },{ width: isOpen ? '100%' : '95%' },

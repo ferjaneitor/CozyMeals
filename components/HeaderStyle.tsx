@@ -6,12 +6,14 @@ import AppLoading from 'expo-app-loading';
 import GetLocation from '../Scripts/GetLocation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 interface HeaderStyleProps {
   LocationBar: boolean;
+  MenuBar:boolean;
 }
 
-const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar }) => {
+const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar, MenuBar }) => {
 
   const [locationData, setLocationData] = useState<{ latitude: number, longitude: number } | null>(null);
   const [address, setAddress] = useState<string | null>(null);
@@ -28,7 +30,7 @@ const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar }) => {
 
   if (!fontsLoaded) {
     return <AppLoading />;
-  }
+  } 
 
   const navigation: any = useNavigation();
 
@@ -36,7 +38,11 @@ const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar }) => {
     <View style={styles.header}>
       <GetLocation onLocationUpdate={handleLocationUpdate}/>
       <View style={styles.menuDiv}>
-        <Image source={require('../assets/Images/menu-8.png')} style={styles.menuImage} />
+        {MenuBar && 
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+            <Image source={require('../assets/Images/menu-8.png')} style={styles.menuImage} />
+          </TouchableOpacity>
+        }
       </View>
       <View style={styles.appName}>
         <TouchableOpacity onPress={(()=>{navigation.navigate('Home')})}>
@@ -47,8 +53,8 @@ const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar }) => {
             <Image source={require('../assets/Images/position-marker.png')} style={styles.ubicacionIcon}/>
             <View style={styles.ubicacionTextDiv}>
               <Text style={styles.ubicacionActual}>Ubicacion Actual</Text>
-              <Text style={styles.ubicacionCalle}>{locationData?.latitude}</Text>
-              <Text style={styles.ubicacionCalle}>{locationData?.longitude}</Text>
+              {/* <Text style={styles.ubicacionCalle}>{locationData?.latitude}</Text>
+              <Text style={styles.ubicacionCalle}>{locationData?.longitude}</Text> */}
               <Text style={styles.ubicacionCalle}>{address}</Text>
             </View>
             <TouchableOpacity onPress={() => {navigation.navigate('Map')}}>

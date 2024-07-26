@@ -20,7 +20,7 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* Header */}
-        <HeaderStyle LocationBar={true}/>
+        <HeaderStyle LocationBar={true} MenuBar={true}/>
 
         {/* Search Bar */}
         <SearchBar/>

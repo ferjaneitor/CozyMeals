@@ -1,5 +1,8 @@
 import { View, Text,StyleSheet, Image } from 'react-native'
 import React from 'react'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useAppContext } from '../../Scripts/AppContext';
+import { useNavigation } from '@react-navigation/native';
 
 interface RestaurantNameProps{
   Name:string
@@ -7,10 +10,20 @@ interface RestaurantNameProps{
 }
 
 const RestaurantName: React.FC<RestaurantNameProps> = ({ Name, src }) => {
+
+  const {setTempData} = useAppContext()
+  const navigation: any = useNavigation();
+
   return (
     <View style={styles.container}>
       <Image source={src} style={styles.image} />
-      <Text style={styles.restaurantName}>{Name}</Text>
+      <TouchableOpacity onPress={()=>{
+          setTempData(Name)
+          console.log("🚀 ~ Name:", Name)
+          navigation.navigate('MapWithRestaurantLocations')
+      }}>
+        <Text style={styles.restaurantName}>{Name}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
