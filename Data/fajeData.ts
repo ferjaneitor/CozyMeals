@@ -8,6 +8,7 @@ interface Meal {
     ProductionDate: string;
     Rating: string;
     Quantity: string;
+    Price:number;
     Description: string;
     IngridientsList: string[];
 }
@@ -20,6 +21,7 @@ interface Restaurant {
     Longitud: number;
     Latitud: number;
     Rating: string;
+    Supplies: boolean;
     Meals: Meal[];
     Info: {
         Number: string;
@@ -37,6 +39,7 @@ export const fakeData: Restaurant[] = [
         Longitud: -103.7267,
         Latitud: 19.2433,
         Rating: '4.5',
+        Supplies:false,
         Meals: [
             {
                 Name: 'Tacos de Birria',
@@ -47,6 +50,7 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-22',
                 Rating: '4.7',
                 Quantity: '10',
+                Price: 70,
                 Description: 'Tacos rellenos de carne de res cocida en un caldo de chiles y especias.',
                 IngridientsList: [
                     'Carne de res',
@@ -64,6 +68,7 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-23',
                 Rating: '4.6',
                 Quantity: '8',
+                Price: 70,
                 Description: 'Tortillas rellenas de pollo y bañadas en salsa verde.',
                 IngridientsList: [
                     'Tortillas de maíz',

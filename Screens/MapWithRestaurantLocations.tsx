@@ -50,7 +50,7 @@ const MapWithRestaurantLocations = () => {
           <HeaderStyle LocationBar={true} MenuBar={false}/>
           {locationData !== null && (
             <MapView
-              style={styles.map}
+              style={[{height: tempData !== null? '68%' : '80%'},styles.map]}
               initialRegion={{
                 latitude: locationData.latitude,
                 longitude: locationData.longitude,
@@ -85,23 +85,25 @@ const MapWithRestaurantLocations = () => {
                 )}
               </MapView>
           )}
-            <View style={[{ marginTop: isOpen ? -200 : 5 },{ width: isOpen ? '100%' : '95%' },
-                { height: isOpen ? 400 : 100 }, styles.LocateRestaurantsBar]}>
-            <Text style={styles.header}>Comedores cercanos a ti</Text>
-            {isOpen && 
-                <ScrollView style={styles.RestaurantName}>
-                    <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
-                    {fakeData.map(e => {
-                        return(
-                        <RestaurantName Name={e.Name} src={require('../assets/Images/award-certificate.png')}/>
-                        )
-                    })}
-                </ScrollView>
-                }
-                <TouchableOpacity onPress={()=>{OpenClose()}}>
-                    <Text style={styles.OpenClose}>{isOpen ? 'Cerrar' : 'Abrir'}</Text>
-                </TouchableOpacity>
-            </View>
+            {tempData !== null && 
+                <View style={[{ marginTop: isOpen ? -200 : 5 },{ width: isOpen ? '100%' : '95%' },
+                    { height: isOpen ? 400 : 100 }, styles.LocateRestaurantsBar]}>
+                <Text style={styles.header}>Comedores cercanos a ti</Text>
+                {isOpen && 
+                    <ScrollView style={styles.RestaurantName}>
+                        <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
+                        {fakeData.map(e => {
+                            return(
+                            <RestaurantName Name={e.Name} src={require('../assets/Images/award-certificate.png')}/>
+                            )
+                        })}
+                    </ScrollView>
+                    }
+                    <TouchableOpacity onPress={()=>{OpenClose()}}>
+                        <Text style={styles.OpenClose}>{isOpen ? 'Cerrar' : 'Abrir'}</Text>
+                    </TouchableOpacity>
+                </View>
+            }
         </SafeAreaView>
     )
 }
@@ -113,7 +115,6 @@ const MapWithRestaurantLocations = () => {
         alignItems: 'center',
       },
       map:{
-          height: '68%',
           width: '95%',
           borderRadius:10,
       },

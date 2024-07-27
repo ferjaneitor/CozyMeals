@@ -17,6 +17,7 @@ import MapWithRestaurantLocations from './Screens/MapWithRestaurantLocations';
 // types.ts
 export type RootStackParamList = {
   Home: undefined;
+  home: undefined;
   Restaurant: undefined;
   Profile: undefined;
   Settings: undefined;
@@ -59,10 +60,10 @@ const AppContent: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {true ? (
+        {identified ? (
           <>
             <Stack.Group>
-              <Stack.Screen name="Home" component={DrawerContent} options={{headerShown:false}}/>
+              <Stack.Screen name="home" component={DrawerContent} options={{headerShown:false}}/>
               <Stack.Screen name="Restaurant" component={RestaurantScreen} />
               <Stack.Screen name="Profile" component={ProfileScreen} />
               <Stack.Screen name="Map" component={MapScreen} />

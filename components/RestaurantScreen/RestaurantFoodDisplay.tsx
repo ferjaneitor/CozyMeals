@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, Image, ScrollView, TouchableOpacity, StyleShe
 import ImgRatingQuantityDisplay from './ImgRatingQuantityDisplay';
 import FoodGeneralInformation from './FoodGeneralInformation';
 import { add2Cart } from '../../Data/profileData';
+import { useNavigation } from '@react-navigation/native';
 
 interface RestaurantFoodDisplayProps{
     title:string
@@ -36,6 +37,7 @@ const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({
   const [isOpenCart,setIsOpenCart] = useState(false)
 
   const addQuantity = () => setQuantity(Quantity + 1);
+  const navigation: any = useNavigation();
 
   const removeQuantity = () => {
       if (Quantity > 0) { 
@@ -104,7 +106,10 @@ const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({
               <Text style={styles.sumSubText}> + </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.add2CartButtom} onPress={()=> add2Cart(title, Quantity)}>
+          <TouchableOpacity style={styles.add2CartButtom} onPress={()=> {
+              // add2Cart(title, Quantity)
+              navigation.navigate('Cart')
+            }}>
             <Text style={styles.add2CartText}>
               Agregar al Carrito
             </Text>

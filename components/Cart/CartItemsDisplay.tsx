@@ -1,12 +1,121 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native';
 
 const CartItemsDisplay = () => {
+
+    const navigation: any = useNavigation();
+
   return (
-    <View>
-      <Text>CartItemsDisplay</Text>
+    <View style={styles.container}>
+      <View style={styles.mealRestaurantPriceView}>
+        <Text style={styles.foodName}>
+            Tamales
+        </Text>
+        <View style={styles.restaurantPriceView}>
+            <Text style={styles.restaurantName}>
+                Cocina Economica
+            </Text>
+            <View style={styles.priceView}>
+                <Text style={styles.price}>
+                    $70
+                </Text>
+            </View>
+        </View>
+      </View>
+      <View style={styles.addRemoveView}>
+        <TouchableOpacity style={styles.addRemoveButtom} onPress={()=>{
+            navigation.navigate('Cart')
+        }}>
+            <Text style={styles.addRemoveButtomText}>-</Text>
+        </TouchableOpacity>
+        <Text style={styles.quantity}>
+            0
+        </Text>
+        <TouchableOpacity style={styles.addRemoveButtom} onPress={()=>{
+            navigation.navigate('Cart')
+        }}>
+            <Text style={styles.addRemoveButtomText}>+</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+            <Image source={require('../../assets/Images/trash-can.png')} style={styles.removeIcon}/>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    container:{
+        alignItems:'center',
+        justifyContent:'space-between',
+        backgroundColor:'#513A2C',
+        marginVertical:15,
+        flexDirection:'row',
+        width:350,
+        borderRadius:10,
+    },
+    foodName:{
+        color: '#F2DCC2',
+        marginBottom:10,
+        fontSize:20,
+    },
+    restaurantName:{
+        color: '#F2DCC2',
+        fontSize:14,
+    },
+    price:{
+        color: '#F2DCC2',
+        fontSize:14,
+        marginLeft:10,
+    },
+    addRemoveButtom:{
+        flex:1,
+        alignContent:'center',
+        justifyContent:'center',
+        marginHorizontal:15,
+        backgroundColor: '#F2DCC2',
+        borderRadius:5,
+        width:20,
+    },
+    addRemoveButtomText:{
+        fontSize:18,
+        verticalAlign:'middle',
+        textAlign:'center'
+    },
+    quantity:{
+        color: '#F2DCC2',
+        fontSize:20,
+    },
+    removeIcon:{
+        width:20,
+        height:20,
+    },
+    restaurantPriceView:{
+        flexDirection:'row',
+    },
+    mealRestaurantPriceView:{
+        marginLeft:15,
+        marginVertical:15,
+        width:180,
+    },
+    priceView:{
+        borderWidth:2,
+        borderColor: '#F2DCC2',
+        borderTopWidth:0,
+        borderRightWidth:0,
+        borderBottomWidth:0,
+        marginLeft:15,
+        alignContent:'center',
+        justifyContent:'center',
+    },
+    addRemoveView:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignContent:'center',
+        marginRight:10
+    },
+})
 
 export default CartItemsDisplay
