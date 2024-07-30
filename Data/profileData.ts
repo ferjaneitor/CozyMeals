@@ -4,6 +4,7 @@ interface CartItem {
     name: string;
     quantity: number;
     price:number
+    restaurant:string
 }
 
 interface ProfileData {
@@ -67,7 +68,7 @@ export const Validate = (email: string, password: string, confirmPassword: strin
     }
 };
 
-export const add2Cart = (meal: string, quantity: number, price:number): void => {
+export const add2Cart = (meal: string, quantity: number, price:number, restaurant:string): void => {
     if (typeof meal !== 'string' || meal.trim() === '' || typeof quantity !== 'number' || quantity <= 0) {
         throw new Error('Invalid meal or quantity')
     }
@@ -79,7 +80,7 @@ export const add2Cart = (meal: string, quantity: number, price:number): void => 
          profileData.cart[productIndex].quantity += quantity;
      } else {
          // Si el producto no existe en el carrito, agrégalo
-         profileData.cart.push({ name: meal, quantity: quantity, price:price });
+         profileData.cart.push({ name: meal, quantity: quantity, price:price, restaurant:restaurant });
      }
 }
 
@@ -105,5 +106,5 @@ export const removeFromCart = (mealName: string): void => {
 }
 
 export const totalPrice = (): number => {
-    return profileData.cart.reduce((total, product) => total + product.price, 0);
+    return profileData.cart.reduce((total, product) => total + (product.price * product.quantity) , 0);
 }

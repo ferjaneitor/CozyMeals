@@ -33,8 +33,14 @@ const HomeScreen = () => {
 
         {/* Food Section */}
         <View style={styles.foodDiv}>
-        <HorizontalScrollerTitle title={'Comidas y platillos'}/>
-          <Food/>
+          <HorizontalScrollerTitle title={'Comidas y Platillos'}/>
+          <Food supplies={false}/>
+        </View>
+
+        {/* supplies Section */}
+        <View style={styles.foodDiv}>
+          <HorizontalScrollerTitle title={'Insumos y Despensa'}/>
+          <Food supplies={true}/>
         </View>
       </ScrollView>
     </SafeAreaView>

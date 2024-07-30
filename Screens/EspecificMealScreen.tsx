@@ -6,12 +6,25 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { fakeData } from '../Data/fajeData';
 import ImgRatingQuantityDisplay from '../components/RestaurantScreen/ImgRatingQuantityDisplay';
 import FoodGeneralInformation from '../components/RestaurantScreen/FoodGeneralInformation';
+import { add2Cart } from '../Data/profileData';
 
 const EspecificMealScreen = () => {
 
     const navigation: any = useNavigation();
     const [isLiked,setIsLiked] = useState(require('../assets/Images/heart-emtpy.png'))
     const {tempData} = useAppContext()
+    const [isOpenCart,setIsOpenCart] = useState(false)
+    const [Quantity,setQuantity] = useState<number>(0)
+
+    const addQuantity = () => setQuantity(Quantity + 1);
+
+    const removeQuantity = () => {
+        if (Quantity > 0) { 
+            setQuantity(Quantity - 1);
+        }
+    };  
+
+    const OpenCloseCart = () => setIsOpenCart(!isOpenCart)
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -42,6 +55,7 @@ const EspecificMealScreen = () => {
                                         quantity={Meal.Quantity} 
                                         RestaurantName={Meal.RestaurantName}
                                         rating={Meal.Rating}
+                                        price={Meal.Price}
                                     />
                                         <FoodGeneralInformation
                                         RestaurantName={Meal.RestaurantName}
@@ -58,13 +72,35 @@ const EspecificMealScreen = () => {
                                             <Image source={isLiked} style={styles.heartFood} />
                                         </TouchableOpacity>
                                     </View>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => OpenCloseCart()}>
                                         <View style={styles.checkOrder}>
                                             <Text style={styles.checkOrderText}>Ordenar</Text>
                                             <Image source={require('../assets/Images/shopping-cart.png')} style={styles.cartIcon} />
                                         </View>
                                     </TouchableOpacity>
-                                </View>
+                                    </View>
+                                    {isOpenCart &&(
+                                    <View style={styles.cartView}>
+                                    <Text style={styles.cartdescription}>¿Cuántos platos de esta comida te gustaría ordenar?</Text>
+                                    <View style={styles.sumSubView}>
+                                        <TouchableOpacity style={styles.sumSubButtom} onPress={ ()=> removeQuantity() }>
+                                        <Text style={styles.sumSubText}> - </Text>
+                                        </TouchableOpacity>
+                                        <Text style={styles.quantityText}>{Quantity}</Text>
+                                        <TouchableOpacity style={styles.sumSubButtom} onPress={ ()=> addQuantity() }>
+                                        <Text style={styles.sumSubText}> + </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                        <TouchableOpacity style={styles.add2CartButtom} onPress={()=> {
+                                            add2Cart(Meal.Name, Quantity, Meal.Price, Meal.RestaurantName)
+                                            navigation.navigate('Cart')
+                                        }}>
+                                        <Text style={styles.add2CartText}>
+                                            Agregar al Carrito
+                                        </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    )}
                                 </View>
                             </View>
                         );
@@ -158,6 +194,52 @@ const styles = StyleSheet.create({
         height: 40,
         padding: 0,
     },
+    cartView:{
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center',
+      },
+      sumSubView:{
+        width:250,
+        flex: 1,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+      },
+      sumSubButtom:{
+        alignItems: 'center',
+        justifyContent:'center',
+        backgroundColor: '#A9744C',
+        borderRadius: 10,
+        height:50,
+        width:60,
+      },
+      sumSubText:{
+        color:'#F2DCC2',
+        fontSize:30,
+      },
+      add2CartText:{
+        color:'#F2DCC2',
+        fontSize:22,
+      },
+      add2CartButtom:{
+        marginTop:20,
+        backgroundColor: '#A9744C',
+        borderRadius: 10,
+        paddingVertical:10,
+        paddingHorizontal:40,
+  
+      },
+      quantityText:{
+        color:'#F2DCC2',
+        fontSize:30,
+      },
+      cartdescription:{
+        marginVertical:10,
+        color:'#F2DCC2',
+        fontSize:20,
+        width:250,
+      },
 })
 
 export default EspecificMealScreen

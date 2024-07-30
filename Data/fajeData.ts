@@ -9,6 +9,7 @@ interface Meal {
     Rating: string;
     Quantity: string;
     Price:number;
+    Supplies: boolean;
     Description: string;
     IngridientsList: string[];
 }
@@ -21,7 +22,6 @@ interface Restaurant {
     Longitud: number;
     Latitud: number;
     Rating: string;
-    Supplies: boolean;
     Meals: Meal[];
     Info: {
         Number: string;
@@ -39,7 +39,6 @@ export const fakeData: Restaurant[] = [
         Longitud: -103.7267,
         Latitud: 19.2433,
         Rating: '4.5',
-        Supplies:false,
         Meals: [
             {
                 Name: 'Tacos de Birria',
@@ -51,6 +50,7 @@ export const fakeData: Restaurant[] = [
                 Rating: '4.7',
                 Quantity: '10',
                 Price: 70,
+                Supplies:false,
                 Description: 'Tacos rellenos de carne de res cocida en un caldo de chiles y especias.',
                 IngridientsList: [
                     'Carne de res',
@@ -68,7 +68,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-23',
                 Rating: '4.6',
                 Quantity: '8',
-                Price: 70,
+                Price: 60,
+                Supplies:false,
                 Description: 'Tortillas rellenas de pollo y bañadas en salsa verde.',
                 IngridientsList: [
                     'Tortillas de maíz',
@@ -101,6 +102,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-22',
                 Rating: '4.9',
                 Quantity: '15',
+                Price: 50,
+                Supplies:false,
                 Description: 'Sopa tradicional de fideos en caldo de tomate.',
                 IngridientsList: [
                     'Fideos',
@@ -118,6 +121,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-23',
                 Rating: '4.8',
                 Quantity: '12',
+                Price: 80,
+                Supplies:false,
                 Description: 'Arroz cocido con piezas de pollo y verduras.',
                 IngridientsList: [
                     'Arroz',
@@ -150,6 +155,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-22',
                 Rating: '4.6',
                 Quantity: '5',
+                Price: 90,
+                Supplies:false,
                 Description: 'Pizza clásica con salsa de tomate, mozzarella y albahaca.',
                 IngridientsList: [
                     'Masa de pizza',
@@ -167,6 +174,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-23',
                 Rating: '4.7',
                 Quantity: '7',
+                Price: 30,
+                Supplies:false,
                 Description: 'Capas de pasta con carne, salsa de tomate y queso.',
                 IngridientsList: [
                     'Pasta',
@@ -199,6 +208,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-23',
                 Rating: '4.7',
                 Quantity: '20',
+                Price: 60,
+                Supplies:false,
                 Description: 'Carne de res cocida lentamente con especias.',
                 IngridientsList: [
                     'Carne de res',
@@ -217,6 +228,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-24',
                 Rating: '4.6',
                 Quantity: '25',
+                Price: 70,
+                Supplies:false,
                 Description: 'Caldo hecho con el jugo de la barbacoa.',
                 IngridientsList: [
                     'Caldo de carne',
@@ -249,6 +262,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-22',
                 Rating: '4.9',
                 Quantity: '8',
+                Price: 20,
+                Supplies:false,
                 Description: 'Pan dulce hecho a base de elote fresco.',
                 IngridientsList: [
                     'Elote',
@@ -266,6 +281,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-23',
                 Rating: '4.8',
                 Quantity: '15',
+                Price: 15,
+                Supplies:true,
                 Description: 'Café negro preparado con granos seleccionados.',
                 IngridientsList: [
                     'Café',
@@ -296,6 +313,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-22',
                 Rating: '4.7',
                 Quantity: '25',
+                Price: 25,
+                Supplies:false,
                 Description: 'Tacos de cerdo adobado cocido en trompo.',
                 IngridientsList: [
                     'Cerdo',
@@ -314,6 +333,8 @@ export const fakeData: Restaurant[] = [
                 ProductionDate: '2024-07-23',
                 Rating: '4.8',
                 Quantity: '20',
+                Price: 17,
+                Supplies:true,
                 Description: 'Tacos de carne de cerdo frita.',
                 IngridientsList: [
                     'Cerdo',

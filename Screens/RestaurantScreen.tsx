@@ -22,6 +22,16 @@ const RestaurantScreen= () => {
     <SafeAreaView style={styles.container}>
       <HeaderStyle LocationBar={false} MenuBar={false}/>
       <ScrollView contentContainerStyle={styles.mainBody}>
+        <View style={styles.RestaurantTitleView}>
+          {fakeData.map(e=>{
+            if (e.Name === tempData) {
+              return(
+                <Image source={e.Img} style={styles.RestaurantTitleImage}/>
+              )
+            }
+          })}
+          <Text style={styles.RestauranteTitleText}>{tempData}</Text>
+        </View>
         <Text style={styles.ultimasDonacionesText}>| Últimas Donaciones</Text>
         {fakeData.map(dataItem => {
             if(dataItem.Name === tempData){
@@ -38,6 +48,7 @@ const RestaurantScreen= () => {
                   Date={meal.ProductionDate}
                   ExpirationDate={meal.ExpirationDate}
                   rating={meal.Rating}
+                  price={meal.Price}
                 />
               ));
             }
@@ -62,6 +73,27 @@ const styles = StyleSheet.create({
     color: '#372012',
     marginBottom: 20,
   },
+  RestaurantTitleView:{
+    justifyContent:'center',
+    alignItems:'center',
+    height:200,
+    width:'100%',
+    marginBottom:40,
+  },
+  RestauranteTitleText:{
+    backgroundColor: '#513A2C',
+    fontSize:20,
+    marginTop:-20,
+    color: '#F2DCC2',
+    paddingHorizontal:20,
+    paddingVertical:10,
+    borderRadius:8,
+  },
+  RestaurantTitleImage:{
+    height:'90%',
+    width:'90%',
+    borderRadius:10,
+  }
 });
 
 export default RestaurantScreen;

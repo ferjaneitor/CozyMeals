@@ -2,8 +2,16 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
+import { removeFromCart, updateQuantity } from '../../Data/profileData';
 
-const CartItemsDisplay = () => {
+interface CartItemsDisplayProps{
+    foodName:string
+    restaurantName:string
+    price:number
+    quantity:number
+}
+
+const CartItemsDisplay: React.FC<CartItemsDisplayProps> = ({foodName,restaurantName, price,quantity}) => {
 
     const navigation: any = useNavigation();
 
@@ -11,34 +19,39 @@ const CartItemsDisplay = () => {
     <View style={styles.container}>
       <View style={styles.mealRestaurantPriceView}>
         <Text style={styles.foodName}>
-            Tamales
+            {foodName}
         </Text>
         <View style={styles.restaurantPriceView}>
             <Text style={styles.restaurantName}>
-                Cocina Economica
+                {restaurantName}
             </Text>
             <View style={styles.priceView}>
                 <Text style={styles.price}>
-                    $70
+                    {price}
                 </Text>
             </View>
         </View>
       </View>
       <View style={styles.addRemoveView}>
         <TouchableOpacity style={styles.addRemoveButtom} onPress={()=>{
-            navigation.navigate('Cart')
+            navigation.navigate('home')
+            updateQuantity( foodName ,false)
         }}>
             <Text style={styles.addRemoveButtomText}>-</Text>
         </TouchableOpacity>
         <Text style={styles.quantity}>
-            0
+            {quantity}
         </Text>
         <TouchableOpacity style={styles.addRemoveButtom} onPress={()=>{
-            navigation.navigate('Cart')
+            navigation.navigate('home')
+            updateQuantity( foodName ,true)
         }}>
             <Text style={styles.addRemoveButtomText}>+</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{
+            navigation.navigate('home')
+            removeFromCart(foodName)
+        }}>
             <Image source={require('../../assets/Images/trash-can.png')} style={styles.removeIcon}/>
         </TouchableOpacity>
       </View>
@@ -64,6 +77,7 @@ const styles = StyleSheet.create({
     restaurantName:{
         color: '#F2DCC2',
         fontSize:14,
+        width:140,
     },
     price:{
         color: '#F2DCC2',

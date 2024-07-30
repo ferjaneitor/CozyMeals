@@ -12,6 +12,7 @@
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@expo-google-fonts/archivo": "^0.2.3",
     "@expo-google-fonts/inter": "^0.2.3",
+    "@expo-google-fonts/league-spartan": "^0.2.3",
     "@expo-google-fonts/londrina-outline": "^0.2.3",
     "@expo-google-fonts/merienda": "^0.2.3",
     "@expo/metro-runtime": "~3.2.1",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@types/node": "^22.0.0",
     "@types/react": "~18.2.45",
     "typescript": "^5.1.3"
   },

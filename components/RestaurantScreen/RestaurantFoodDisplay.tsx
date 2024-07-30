@@ -16,6 +16,7 @@ interface RestaurantFoodDisplayProps{
     Date:string
     ExpirationDate:string,
     rating:string,
+    price:number
 }
 
 const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({
@@ -29,15 +30,16 @@ const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({
   Date,
   ExpirationDate,
   rating,
+  price,
 }) => {
 
   const [isOpen,setIsOpen] = useState(false)
   const [isLiked,setIsLiked] = useState(require('../../assets/Images/heart-emtpy.png'))
   const [Quantity,setQuantity] = useState<number>(0)
   const [isOpenCart,setIsOpenCart] = useState(false)
+  const navigation: any = useNavigation();
 
   const addQuantity = () => setQuantity(Quantity + 1);
-  const navigation: any = useNavigation();
 
   const removeQuantity = () => {
       if (Quantity > 0) { 
@@ -66,6 +68,7 @@ const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({
           quantity={quantity} 
           RestaurantName={RestaurantName}
           rating={rating}
+          price={price}
         />
         {isOpen && (
           <FoodGeneralInformation
@@ -106,15 +109,15 @@ const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({
               <Text style={styles.sumSubText}> + </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.add2CartButtom} onPress={()=> {
-              // add2Cart(title, Quantity)
-              navigation.navigate('Cart')
-            }}>
-            <Text style={styles.add2CartText}>
-              Agregar al Carrito
-            </Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity style={styles.add2CartButtom} onPress={()=> {
+                add2Cart(title, Quantity, price, RestaurantName)
+                navigation.navigate('Cart')
+              }}>
+              <Text style={styles.add2CartText}>
+                Agregar al Carrito
+              </Text>
+            </TouchableOpacity>
+          </View>
         )}
       </View>
     </View>

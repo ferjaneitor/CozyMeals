@@ -13,6 +13,10 @@ import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigatio
 import SingInScreen from './Screens/SingInScreen';
 import SingUpScreen from './Screens/SingUpScreen';
 import MapWithRestaurantLocations from './Screens/MapWithRestaurantLocations';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+
+SplashScreen.preventAutoHideAsync(); //
 
 // types.ts
 export type RootStackParamList = {
@@ -60,7 +64,7 @@ const AppContent: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {identified ? (
+        {true ? (
           <>
             <Stack.Group>
               <Stack.Screen name="home" component={DrawerContent} options={{headerShown:false}}/>
@@ -86,6 +90,18 @@ const AppContent: React.FC = () => {
 };
 
 const App: React.FC = () => {
+
+  useEffect(() => {
+    async function prepare() {
+      // Realiza las operaciones necesarias antes de mostrar la app
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simula una operación asincrónica, como cargar datos
+
+      SplashScreen.hideAsync(); // Esconde el splash screen cuando las operaciones están completadas
+    }
+
+    prepare();
+  }, []);
+
   return (
     <AppProvider>
       <AppContent />

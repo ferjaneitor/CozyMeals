@@ -1,70 +1,77 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFonts, Merienda_400Regular } from '@expo-google-fonts/merienda';
 import { LondrinaOutline_400Regular } from '@expo-google-fonts/londrina-outline';
-import AppLoading from 'expo-app-loading';
+import { LeagueSpartan_600SemiBold } from '@expo-google-fonts/league-spartan';
+import * as SplashScreen from 'expo-splash-screen';
 import GetLocation from '../Scripts/GetLocation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
 interface HeaderStyleProps {
   LocationBar: boolean;
-  MenuBar:boolean;
+  MenuBar: boolean;
 }
 
 const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar, MenuBar }) => {
-
   const [locationData, setLocationData] = useState<{ latitude: number, longitude: number } | null>(null);
   const [address, setAddress] = useState<string | null>(null);
 
-  const handleLocationUpdate = (location: {latitude:number, longitude:number },address: string | null ) => {
-    setLocationData(location)
-    setAddress(address)
-  }
+  const handleLocationUpdate = (location: { latitude: number, longitude: number }, address: string | null) => {
+    setLocationData(location);
+    setAddress(address);
+  };
 
   let [fontsLoaded] = useFonts({
     Merienda_400Regular,
     LondrinaOutline_400Regular,
+    LeagueSpartan_600SemiBold
   });
 
+  useEffect(() => {
+    async function prepare() {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync();
+      }
+    }
+    prepare();
+  }, [fontsLoaded]);
+
   if (!fontsLoaded) {
-    return <AppLoading />;
-  } 
+    return null; // O muestra un componente de carga alternativo
+  }
 
   const navigation: any = useNavigation();
 
   return (
     <View style={styles.header}>
-      <GetLocation onLocationUpdate={handleLocationUpdate}/>
+      <GetLocation onLocationUpdate={handleLocationUpdate} />
       <View style={styles.menuDiv}>
-        {MenuBar && 
+        {MenuBar && (
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <Image source={require('../assets/Images/menu-8.png')} style={styles.menuImage} />
           </TouchableOpacity>
-        }
+        )}
       </View>
       <View style={styles.appName}>
-        <TouchableOpacity onPress={(()=>{navigation.navigate('Home')})}>
+        <TouchableOpacity onPress={() => { navigation.navigate('Home'); }}>
           <Text style={styles.appNameText}>CozyMeals</Text>
         </TouchableOpacity>
         {LocationBar && (
-          <View style={styles.ubicacionDiv} >
-            <Image source={require('../assets/Images/position-marker.png')} style={styles.ubicacionIcon}/>
+          <View style={styles.ubicacionDiv}>
+            <Image source={require('../assets/Images/position-marker.png')} style={styles.ubicacionIcon} />
             <View style={styles.ubicacionTextDiv}>
               <Text style={styles.ubicacionActual}>Ubicacion Actual</Text>
-              {/* <Text style={styles.ubicacionCalle}>{locationData?.latitude}</Text>
-              <Text style={styles.ubicacionCalle}>{locationData?.longitude}</Text> */}
               <Text style={styles.ubicacionCalle}>{address}</Text>
             </View>
-            <TouchableOpacity onPress={() => {navigation.navigate('Map')}}>
+            <TouchableOpacity onPress={() => { navigation.navigate('Map'); }}>
               <Image source={require('../assets/Images/down-arrow.png')} style={styles.ubicacionIcon} />
             </TouchableOpacity>
           </View>
         )}
       </View>
       <View style={styles.profileImg}>
-        <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
+        <TouchableOpacity onPress={() => { navigation.navigate('Profile'); }}>
           <Image source={require('../assets/Images/profile.png')} style={styles.profileImage} />
         </TouchableOpacity>
       </View>
@@ -93,7 +100,8 @@ const styles = StyleSheet.create({
   },
   appNameText: {
     fontSize: 30,
-    fontFamily: 'Merienda_400Regular',
+    fontFamily: 'LeagueSpartan_600SemiBold',
+    color: '#513A2C'
   },
   ubicacionDiv: {
     flexDirection: 'row',
@@ -111,11 +119,13 @@ const styles = StyleSheet.create({
   },
   ubicacionActual: {
     fontWeight: '300',
-    color: 'rgba(0, 0, 0, 0.4)',
+    color: 'rgba(81, 58, 44, 0.6)',
     fontSize: 12,
   },
   ubicacionCalle: {
     fontSize: 14,
+    width:150,
+    color: '#513A2C'
   },
   profileImg: {
     justifyContent: 'flex-end',

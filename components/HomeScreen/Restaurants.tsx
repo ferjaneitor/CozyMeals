@@ -8,7 +8,8 @@ const Restaurants = () => {
     <ScrollView horizontal={true}>
       {fakeData.map(e=>{
         return(
-          <RestaurantCard 
+          <RestaurantCard
+            key={e.Name} 
             src={e.Img} 
             title={e.Name} 
             description={e.Type} 

@@ -6,9 +6,10 @@ interface ImgRatingQuantityDisplayProps{
     quantity:string
     RestaurantName: string
     rating:string
+    price:number
 }
 
-const ImgRatingQuantityDisplay: React.FC<ImgRatingQuantityDisplayProps> = ({src,quantity, RestaurantName, rating}) => {
+const ImgRatingQuantityDisplay: React.FC<ImgRatingQuantityDisplayProps> = ({src,quantity, RestaurantName, rating, price}) => {
   return (
     <View style={styles.imgRatingQuantityDiv}>
       <View style={styles.foodImgDiv}>
@@ -20,6 +21,10 @@ const ImgRatingQuantityDisplay: React.FC<ImgRatingQuantityDisplayProps> = ({src,
         <View style={styles.ratingDiv}>
             <Image source={require('../../assets/Images/star.png')} style={styles.starIcon} />
             <Text style={styles.ratingText}>{rating}</Text>
+        </View>
+        <View style={styles.priceView}>
+            <Text style={styles.priceText}> Precio: </Text>
+            <Text style={styles.priceText}> ${price} mxn </Text>
         </View>
       </View>
     </View>
@@ -78,6 +83,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#F2DCC2',
         fontWeight: 'bold',
+    },
+    priceText:{
+        fontSize:20,
+        color: '#F2DCC2',
+        marginTop:0,
+    },
+    priceView:{
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:20,
     },
 })
 
