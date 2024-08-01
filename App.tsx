@@ -15,6 +15,8 @@ import SingUpScreen from './Screens/SingUpScreen';
 import MapWithRestaurantLocations from './Screens/MapWithRestaurantLocations';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import SelectUserTypeScreen from './Screens/SelectUserTypeScreen';
+import PageNotFound from './Screens/PageNotFound';
 
 SplashScreen.preventAutoHideAsync(); //
 
@@ -33,6 +35,8 @@ export type RootStackParamList = {
   Cart: undefined;
   Drawer: undefined;
   MapWithRestaurantLocations:undefined;
+  SelectUserType:undefined;
+  PageNotFound:undefined
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -59,26 +63,33 @@ const DrawerContent: React.FC = () => (
 );
 
 const AppContent: React.FC = () => {
-  const { identified } = useAppContext();
+  const { identified, loginType } = useAppContext();
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {true ? (
-          <>
+        {identified ? (
+          loginType === 'Receptor' ? (
+            <>
+              <Stack.Group>
+                <Stack.Screen name="home" component={DrawerContent} options={{headerShown:false}}/>
+                <Stack.Screen name="Restaurant" component={RestaurantScreen} />
+                <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen name="Map" component={MapScreen} />
+                <Stack.Screen name="MapWithRestaurantLocations" component={MapWithRestaurantLocations} />
+              </Stack.Group>
+              <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen name="EspecificMeal" component={EspecificMealScreen} />
+              </Stack.Group>
+            </>
+          ):(
             <Stack.Group>
-              <Stack.Screen name="home" component={DrawerContent} options={{headerShown:false}}/>
-              <Stack.Screen name="Restaurant" component={RestaurantScreen} />
-              <Stack.Screen name="Profile" component={ProfileScreen} />
-              <Stack.Screen name="Map" component={MapScreen} />
-              <Stack.Screen name="MapWithRestaurantLocations" component={MapWithRestaurantLocations} />
+              <Stack.Screen name='PageNotFound' component={PageNotFound} options={{headerShown:false}}/>
             </Stack.Group>
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-              <Stack.Screen name="EspecificMeal" component={EspecificMealScreen} />
-            </Stack.Group>
-          </>
+          )
         ) : (
           <Stack.Group>
+            <Stack.Screen name="SelectUserType" component={SelectUserTypeScreen} options={{headerShown:false}}/>
             <Stack.Screen name="NoUserIdentify" component={NoUserIdentifyScreen} />
             <Stack.Screen name="SignIn" component={SingInScreen} />
             <Stack.Screen name="SignUp" component={SingUpScreen} />

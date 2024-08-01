@@ -6,13 +6,17 @@ interface AppContextProps {
   setTempData: (data: string | null) => void;
   identified: boolean;
   setIdentified: (identified: boolean) => void;
+  loginType:string;
+  setLoginType:(loginType: string) => void;
 }
 
 const AppContext = createContext<AppContextProps>({
   tempData: null,
   setTempData: () => {},
-  identified: false,
+  identified: true,
   setIdentified: () => {},
+  loginType: 'Receptor',
+  setLoginType: () => {},
 });
 
 interface AppProviderProps {
@@ -21,12 +25,17 @@ interface AppProviderProps {
 
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [tempData, setTempData] = useState<string | null>(null);
-  const [identified, setIdentified] = useState<boolean>(false);
+  console.log("🚀 ~ tempData:", tempData)
+  console.log("🚀 ~ setTempData:", setTempData)
+  const [identified, setIdentified] = useState<boolean>(true);
+  console.log("🚀 ~ identified:", identified)
   console.log("🚀 ~ setIdentified:", setIdentified)
-  console.log("🚀 ~ setIdentified:", setIdentified)
+  const [loginType,setLoginType] = useState<string>('Receptor');
+  console.log("🚀 ~ loginType:", loginType)
+  console.log("🚀 ~ setLoginType:", setLoginType)
 
   return (
-    <AppContext.Provider value={{ tempData, setTempData, identified, setIdentified }}>
+    <AppContext.Provider value={{ tempData, setTempData, identified, setIdentified, loginType,setLoginType }}>
       {children}
     </AppContext.Provider>
   );

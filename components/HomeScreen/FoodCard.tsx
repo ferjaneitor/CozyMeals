@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10
   },
   foodDescriptionDiv: {
-    backgroundColor: '#A9744C',
+    backgroundColor: '#E86252',
     position: 'relative',
     bottom: 20,
     height: 60,
