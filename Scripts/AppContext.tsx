@@ -13,9 +13,9 @@ interface AppContextProps {
 const AppContext = createContext<AppContextProps>({
   tempData: null,
   setTempData: () => {},
-  identified: true,
+  identified: false,
   setIdentified: () => {},
-  loginType: 'Receptor',
+  loginType: '',
   setLoginType: () => {},
 });
 
@@ -27,10 +27,10 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [tempData, setTempData] = useState<string | null>(null);
   console.log("🚀 ~ tempData:", tempData)
   console.log("🚀 ~ setTempData:", setTempData)
-  const [identified, setIdentified] = useState<boolean>(true);
+  const [identified, setIdentified] = useState<boolean>(false);
   console.log("🚀 ~ identified:", identified)
   console.log("🚀 ~ setIdentified:", setIdentified)
-  const [loginType,setLoginType] = useState<string>('Receptor');
+  const [loginType,setLoginType] = useState<string>('');
   console.log("🚀 ~ loginType:", loginType)
   console.log("🚀 ~ setLoginType:", setLoginType)
 

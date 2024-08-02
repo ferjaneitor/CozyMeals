@@ -11,6 +11,8 @@ const SingUpScreen = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [isSelected, setSelection] = useState(false);
+  const [Error, setError] = useState("");
 
   const navigation = useNavigation();
 
@@ -29,6 +31,7 @@ const SingUpScreen = () => {
       setIdentified(true)
     } catch (error:any) {
         console.error('Validation failed:', error.message);
+        setError(error)
     }
   }
 
@@ -39,7 +42,7 @@ const SingUpScreen = () => {
     >
       <SafeAreaView style={styles.safeAreaView}>
         <View style={styles.textButtonsContainer}>
-          <Text style={styles.LoginText}>Sing Up</Text>
+          <Text style={styles.LoginText}>Registrate</Text>
           <Text style={styles.ParaContinuarText}>Para Continuar</Text>
         </View>
         <View style={styles.textButtonsContainer}>
@@ -70,6 +73,13 @@ const SingUpScreen = () => {
             secureTextEntry={true}
           />
         </View>
+        <View style={{flexDirection:'row'}}>
+          <TouchableOpacity style={[{backgroundColor:isSelected? '#BF8E63':'#F2DCC2'},styles.CheckBox]} onPress={()=>setSelection(!isSelected)}>
+            <Text style={{color:'transparent'}}> o </Text>
+          </TouchableOpacity>
+          <Text>Acepto los terminos y condiciones</Text>
+        </View>
+        <Text>{Error}</Text>
         <View style={styles.textButtonsContainer}>
           <TouchableOpacity style={styles.button} onPress={()=>{validate()}} >
             <Text style={styles.buttonText}>
@@ -136,7 +146,7 @@ const styles = StyleSheet.create({
   },
   inputText:{
     zIndex:2,
-    marginTop:20,
+    marginTop:10,
     color: '#513A2C',
     width:350,
     borderWidth:2,
@@ -157,6 +167,14 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     color:'#513A2C',
     fontSize:30,
+  },
+  CheckBox:{
+    borderWidth:2,
+    width:20,
+    height:20,
+    borderRadius:10,
+    borderColor:'#BF8E63',
+    marginRight:10,
   },
 })
 
