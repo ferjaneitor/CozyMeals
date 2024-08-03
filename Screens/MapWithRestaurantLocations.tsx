@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import HeaderStyle from '../components/HeaderStyle'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
@@ -16,13 +16,20 @@ const MapWithRestaurantLocations = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { tempData } = useAppContext();
     const navigation = useNavigation();
-  
+    const [markers, setMarkers] = useState<{ latitude: number, longitude: number }[]>([{ latitude: locationData?.latitude, longitude: locationData?.longitude }]);
+
     useLayoutEffect(() => {
       navigation.setOptions({
         headerShown: false,
       });
     }, [navigation]);
-  
+
+    useEffect(() => {
+      const restaurant = fakeData.find((r) => r.Name === tempData);
+      const newPoint = { latitude: Number(restaurant?.Longitud), longitude: Number(restaurant?.Latitud) };
+      setMarkers([...markers, newPoint]);
+    },[tempData])
+
     useFocusEffect(
       React.useCallback(() => {
         // Ejecutar cualquier lógica que necesites al enfocar la pantalla
@@ -30,16 +37,16 @@ const MapWithRestaurantLocations = () => {
         console.log("Pantalla enfocada");
       }, [])
     );
-  
+
     const handleLocationUpdate = (location: { latitude: number, longitude: number }, address: string | null) => {
-      setLocationData(location);
       setAddress(address);
+      setLocationData(location);
     };
-  
+
     const toggleOpenClose = () => {
       setIsOpen(!isOpen);
     };
-  
+
     return (
       <SafeAreaView style={styles.container}>
         <GetLocation onLocationUpdate={handleLocationUpdate} />
@@ -54,32 +61,7 @@ const MapWithRestaurantLocations = () => {
               longitudeDelta: 0.09,
             }}
           >
-            <Marker draggable coordinate={locationData} />
-            {(tempData === null) ? (
-              fakeData.map(locations => {
-                if (profileData.cart.some(item => item.name === locations.Name)) {
-                  const markerLocation = {
-                    latitude: locations.Latitud,
-                    longitude: locations.Longitud
-                  };
-                  return (
-                    <Marker key={locations.Name} coordinate={markerLocation}/>
-                  );
-                }
-              })
-            ) : (
-              fakeData.map(locations => {
-                if (locations.Name === tempData) {
-                  const markerLocation = {
-                    latitude: locations.Latitud,
-                    longitude: locations.Longitud
-                  };
-                  return (
-                    <Marker key={locations.Name} coordinate={markerLocation} />
-                  );
-                }
-              })
-            )}
+            {markers.map((point, idx) => <Marker key={idx} coordinate={point} />)}
           </MapView>
         )}
         {tempData !== null &&
@@ -103,7 +85,7 @@ const MapWithRestaurantLocations = () => {
       </SafeAreaView>
     );
   };
-  
+
   const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -136,5 +118,5 @@ const MapWithRestaurantLocations = () => {
         marginTop:10,
     }
     })
-  
+
 export default MapWithRestaurantLocations
