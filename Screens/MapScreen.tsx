@@ -80,12 +80,12 @@ const MapScreen = () => {
         <View style={[{ marginTop: isOpen ? -200 : 5 },{ width: isOpen ? '100%' : '95%' },
         { height: isOpen ? 400 : 100 }, styles.LocateRestaurantsBar]}>
       <Text style={styles.header}>Comedores cercanos a ti</Text>
-      {isOpen && 
+      {isOpen &&
         <ScrollView style={styles.RestaurantName}>
             <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
             {fakeData.map(e => {
               return(
-                <RestaurantName Name={e.Name} src={require('../assets/Images/award-certificate.png')}/>
+                <RestaurantName key={e.Name} Name={e.Name} src={require('../assets/Images/award-certificate.png')}/>
               )
             })}
         </ScrollView>
