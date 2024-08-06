@@ -50,31 +50,6 @@ const MapScreen = () => {
               latitudeDelta: 0.09,
               longitudeDelta: 0.09,
             }}><Marker draggable coordinate={locationData}/>
-              {/* {(tempData === null) ? (
-                    fakeData.map(locations => {
-                        if (profileData.cart.some(item => item.name === locations.Name))  {
-                            const markerLocation = {
-                                latitude: locations.Latitud,
-                                longitude: locations.Longitud
-                            }
-                            return (
-                                <Marker coordinate={markerLocation}/>
-                            )
-                        }
-                    })
-                ) : (
-                    fakeData.map(locations => {
-                        if (locations.Name === tempData) {
-                            const markerLocation = {
-                                latitude: locations.Latitud,
-                                longitude: locations.Longitud
-                            }
-                            return (
-                                <Marker coordinate={markerLocation}/>
-                            )
-                        }
-                    })
-                )} */}
             </MapView>
         )}
         <View style={[{ marginTop: isOpen ? -200 : 5 },{ width: isOpen ? '100%' : '95%' },
@@ -82,10 +57,9 @@ const MapScreen = () => {
       <Text style={styles.header}>Comedores cercanos a ti</Text>
       {isOpen && 
         <ScrollView style={styles.RestaurantName}>
-            <RestaurantName Name='Cocina Economica' src={require('../assets/Images/award-certificate.png')}/>
             {fakeData.map(e => {
               return(
-                <RestaurantName Name={e.Name} src={require('../assets/Images/award-certificate.png')}/>
+                <RestaurantName key={e.Name} Name={e.Name} src={require('../assets/Images/award-certificate.png')}/>
               )
             })}
         </ScrollView>

@@ -13,6 +13,8 @@ interface HeaderStyleProps {
   MenuBar: boolean;
 }
 
+SplashScreen.preventAutoHideAsync();
+
 const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar, MenuBar }) => {
   const [locationData, setLocationData] = useState<{ latitude: number, longitude: number } | null>(null);
   const [address, setAddress] = useState<string | null>(null);
@@ -22,24 +24,21 @@ const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar, MenuBar }) => {
     setAddress(address);
   };
 
-  let [fontsLoaded] = useFonts({
+  let [fontsLoaded, error] = useFonts({
     Merienda_400Regular,
     LondrinaOutline_400Regular,
     LeagueSpartan_600SemiBold
   });
 
   useEffect(() => {
-    async function prepare() {
-      if (fontsLoaded) {
-        await SplashScreen.hideAsync();
-      }
+    if (fontsLoaded || error) {
+      SplashScreen.hideAsync();
     }
-    prepare();
-  }, [fontsLoaded]);
+  }, [fontsLoaded, error]);
 
-  if (!fontsLoaded) {
-    return null; // O muestra un componente de carga alternativo
-  }
+  // if (!fontsLoaded) {
+  //   return null; // O muestra un componente de carga alternativo
+  // }
 
   const navigation: any = useNavigation();
 

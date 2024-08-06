@@ -26,6 +26,7 @@ const Summary = () => {
       <View style={Styles.OrderView}>
         <TouchableOpacity style={Styles.OrderButton} onPress={()=>{
             navigation.navigate('MapWithRestaurantLocations')
+            setTempData(null)
         }}>
             <Text style={Styles.OrderButtonText}>
                 Finalizar Orden
@@ -33,7 +34,6 @@ const Summary = () => {
         </TouchableOpacity >
         <TouchableOpacity style={Styles.OrderButton} onPress={()=>{
             navigation.navigate('Home')
-            setTempData(null)
         }}>
             <Text style={Styles.OrderButtonText}>
                 Continuar Ordenando

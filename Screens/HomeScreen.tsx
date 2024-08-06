@@ -50,7 +50,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2DCC2'
+    backgroundColor: '#FFECD5'
   },
   restaurantsDiv: {
     marginTop: 40,

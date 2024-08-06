@@ -27,10 +27,10 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [tempData, setTempData] = useState<string | null>(null);
   console.log("🚀 ~ tempData:", tempData)
   console.log("🚀 ~ setTempData:", setTempData)
-  const [identified, setIdentified] = useState<boolean>(false);
+  const [identified, setIdentified] = useState<boolean>(true);
   console.log("🚀 ~ identified:", identified)
   console.log("🚀 ~ setIdentified:", setIdentified)
-  const [loginType,setLoginType] = useState<string>('');
+  const [loginType,setLoginType] = useState<string>('Receptor');
   console.log("🚀 ~ loginType:", loginType)
   console.log("🚀 ~ setLoginType:", setLoginType)
 
