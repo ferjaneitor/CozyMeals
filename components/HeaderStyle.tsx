@@ -46,9 +46,13 @@ const HeaderStyle: React.FC<HeaderStyleProps> = ({ LocationBar, MenuBar }) => {
     <View style={styles.header}>
       <GetLocation onLocationUpdate={handleLocationUpdate} />
       <View style={styles.menuDiv}>
-        {MenuBar && (
+        {MenuBar ? (
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <Image source={require('../assets/Images/menu-8.png')} style={styles.menuImage} />
+          </TouchableOpacity>
+        ):(
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={require('../assets/Images/leave.png')} style={styles.menuImage} />
           </TouchableOpacity>
         )}
       </View>
@@ -91,14 +95,14 @@ const styles = StyleSheet.create({
   menuImage: {
     width: 30,
     height: 30,
-  },
+    marginLeft:10,  },
   appName: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
   },
   appNameText: {
-    fontSize: 30,
+    fontSize: 40,
     fontFamily: 'LeagueSpartan_600SemiBold',
     color: '#513A2C'
   },

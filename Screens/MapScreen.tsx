@@ -75,7 +75,7 @@ const MapScreen = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#F2DCC2',
+      backgroundColor: '#feecd4',
       alignItems: 'center',
     },
     map:{
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     LocateRestaurantsBar:{
       flex:1,
       zIndex:1,
-      backgroundColor: '#5c3c29',
+      backgroundColor: '#875c3b',
       alignItems: 'center',
       width:'95%',
       borderRadius:10,

@@ -62,7 +62,7 @@ const Styles = StyleSheet.create({
         color: '#513A2C',
     },
     OrderButton:{
-        backgroundColor:'#513A2C',
+        backgroundColor:'#A9744C',
         paddingHorizontal:6,
         paddingVertical:10,
         borderRadius:10,

@@ -33,11 +33,7 @@ const MapWithRestaurantLocations = () => {
         fakeData.map(r=>{
           if( r.Name === restaurant.restaurant){
             console.log("estas dentro de la iteracion y estas buscando el nombre del restaurante",r.Name)
-            const latitude = Number(r.Latitud);
-            console.log("🚀 ~ useEffect ~ latitude:", latitude)
-            const longitude = Number(r.Longitud);
-            console.log("🚀 ~ useEffect ~ longitude:", longitude)
-            const newPoint = { latitude, longitude };
+            const newPoint = { latitude: Number(r.Latitud), longitude: Number(r.Longitud) };
             setMarkers([...markers, newPoint]);
             console.log("🚀 ~ useEffect ~ newPoint:", newPoint)
           }
@@ -102,7 +98,7 @@ const MapWithRestaurantLocations = () => {
       {tempData !== null &&
         <View style={[{ marginTop: isOpen ? -200 : 5 }, { width: isOpen ? '100%' : '95%' },
         { height: isOpen ? 400 : 100 }, styles.LocateRestaurantsBar]}>
-          <Text style={styles.header}>Comedores cercanos a ti</Text>
+          <Text style={styles.header}>Comedores cexrcanos a ti</Text>
           {isOpen &&
             <ScrollView style={styles.RestaurantName}>
               {fakeData.map(e => {
@@ -134,7 +130,7 @@ const styles = StyleSheet.create({
     LocateRestaurantsBar:{
       flex:1,
       zIndex:1,
-      backgroundColor: '#5c3c29',
+      backgroundColor: '#875c3b',
       alignItems: 'center',
       width:'95%',
       borderRadius:10,

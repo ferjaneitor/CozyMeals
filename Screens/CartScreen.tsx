@@ -43,7 +43,7 @@ const CartScreen = () => {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#F2DCC2',
+        backgroundColor:'#feecd4',
         height:'100%',
         width:'100%',
     },
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     },
     headerText:{
         fontSize:26,
-        color: '#513A2C',
+        color: '#764134',
+        fontWeight:'600'
     },
     header:{
         // borderWidth: 2,

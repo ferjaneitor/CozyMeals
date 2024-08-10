@@ -63,24 +63,26 @@ const styles = StyleSheet.create({
     container:{
         alignItems:'center',
         justifyContent:'space-between',
-        backgroundColor:'#513A2C',
+        backgroundColor:'#e8c9a0',
         marginVertical:15,
         flexDirection:'row',
         width:350,
         borderRadius:10,
     },
     foodName:{
-        color: '#F2DCC2',
+        color: '#513A2C',
         marginBottom:10,
         fontSize:20,
+        fontWeight:'600',
     },
     restaurantName:{
-        color: '#F2DCC2',
+        color: '#513A2C',
         fontSize:14,
         width:140,
+        fontWeight:'500',
     },
     price:{
-        color: '#F2DCC2',
+        color: '#513A2C',
         fontSize:14,
         marginLeft:10,
     },
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
         textAlign:'center'
     },
     quantity:{
-        color: '#F2DCC2',
+        color: '#513A2C',
         fontSize:20,
     },
     removeIcon:{
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     },
     priceView:{
         borderWidth:2,
-        borderColor: '#F2DCC2',
+        borderColor: '#513A2C',
         borderTopWidth:0,
         borderRightWidth:0,
         borderBottomWidth:0,

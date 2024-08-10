@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   restaurantDisplayTextDiv: {
-    backgroundColor: '#E86252',
+    backgroundColor: '#A9744C',
     position: 'relative',
     bottom: 20,
     height: 80,
@@ -64,10 +64,12 @@ const styles = StyleSheet.create({
   restaurantHeader: {
     fontSize: 25,
     color: '#fff',
+    fontWeight:'500',
   },
   restaurantDescription: {
     fontSize: 18,
     color: '#fff',
+    fontWeight:'300'
   },
 });
 

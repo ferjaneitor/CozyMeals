@@ -17,6 +17,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import SelectUserTypeScreen from './Screens/SelectUserTypeScreen';
 import PageNotFound from './Screens/PageNotFound';
+import SearchScreen from './Screens/SearchScreen';
 
 SplashScreen.preventAutoHideAsync(); //
 
@@ -36,7 +37,8 @@ export type RootStackParamList = {
   Drawer: undefined;
   MapWithRestaurantLocations:undefined;
   SelectUserType:undefined;
-  PageNotFound:undefined
+  PageNotFound:undefined;
+  Search:undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -77,6 +79,7 @@ const AppContent: React.FC = () => {
                 <Stack.Screen name="Profile" component={ProfileScreen} />
                 <Stack.Screen name="Map" component={MapScreen} />
                 <Stack.Screen name="MapWithRestaurantLocations" component={MapWithRestaurantLocations} />
+                <Stack.Screen name="Search" component={SearchScreen} options={{headerShown:false}}/>
               </Stack.Group>
               <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="EspecificMeal" component={EspecificMealScreen} />

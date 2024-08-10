@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     foodImgDivText: {
         fontSize: 18,
-        color: '#F2DCC2',
+        color: '#513A2C',
         marginLeft: 0,
         width: 200,
     },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     ratingQuantityText: {
         padding: 10,
         fontSize: 18,
-        color: '#F2DCC2',
+        color: '#513A2C',
     },
     ratingDiv: {
         flexDirection: 'row',
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     },
     ratingText: {
         fontSize: 20,
-        color: '#F2DCC2',
+        color: '#feecd4',
         fontWeight: 'bold',
     },
     priceText:{
         fontSize:20,
-        color: '#F2DCC2',
+        color: '#513A2C',
         marginTop:0,
     },
     priceView:{

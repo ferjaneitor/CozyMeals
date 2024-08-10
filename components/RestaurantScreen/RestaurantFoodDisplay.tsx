@@ -125,124 +125,124 @@ const RestaurantFoodDisplay: React.FC<RestaurantFoodDisplayProps> = ({
 }
 
 const styles = StyleSheet.create({
-    restaurantFoodCardDiv: {
-        backgroundColor: '#513A2C',
-        borderRadius: 10,
-        padding: 20,
-        width: '95%',
-        marginBottom: 20,
-      },
-      foodCardTopDiv: {
-        alignItems: 'center',
-      },
-      foodTitle: {
-        fontSize: 30,
-        color: '#F2DCC2',
-        marginBottom: 10,
-      },
-      foodCardBottomDiv: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 40,
-        marginBottom: 10,
-        marginRight: 0,
+  restaurantFoodCardDiv: {
+      backgroundColor: '#e8c9a0',
+      borderRadius: 10,
+      padding: 20,
+      width: '95%',
+      marginBottom: 20,
     },
-    heartDetailsDiv: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    heartFood: {
-        height: 50,
-        width:50,
-        padding: 0,
-        marginLeft: 0,
-        backgroundColor: '#A9744C',
-        borderColor: '#F2DCC2',
-        borderRadius: 6,
-        borderWidth: 0,
-    },
-    detailsButton: {
-        height: 54,
-        paddingHorizontal: 10, // Ajusta el padding horizontal si es necesario
-        marginLeft: 5,
-        backgroundColor: '#A9744C',
-        borderColor: '#F2DCC2',
-        borderRadius: 6,
-        borderWidth: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    detailsButtonText: {
-        color: '#F2DCC2',
-        fontSize: 20,
-    },
-    checkOrder: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#A9744C',
-        borderRadius: 6,
-        padding: 5,
-        borderWidth: 2,
-        borderColor: '#F2DCC2',
-        marginLeft:20,
-    },
-    checkOrderText: {
-        color: '#F2DCC2',
-        fontSize: 18,
-        padding: 0,
-    },
-    cartIcon: {
-        height: 40,
-        padding: 0,
-    },
-    cartView:{
-      flex:1,
-      alignItems:'center',
-      justifyContent:'center',
-    },
-    sumSubView:{
-      width:250,
-      flex: 1,
-      flexDirection:'row',
-      alignItems:'center',
-      justifyContent:'space-between',
-    },
-    sumSubButtom:{
+    foodCardTopDiv: {
       alignItems: 'center',
-      justifyContent:'center',
+    },
+    foodTitle: {
+      fontSize: 30,
+      color: '#513A2C',
+      marginBottom: 10,
+    },
+    foodCardBottomDiv: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: 40,
+      marginBottom: 10,
+      marginRight: 0,
+  },
+  heartDetailsDiv: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+  heartFood: {
+      height: 50,
+      width:50,
+      padding: 0,
+      marginLeft: 0,
       backgroundColor: '#A9744C',
-      borderRadius: 10,
-      height:50,
-      width:60,
-    },
-    sumSubText:{
-      color:'#F2DCC2',
-      fontSize:30,
-    },
-    add2CartText:{
-      color:'#F2DCC2',
-      fontSize:22,
-    },
-    add2CartButtom:{
-      marginTop:20,
+      borderColor: '#F2DCC2',
+      borderRadius: 6,
+      borderWidth: 0,
+  },
+  detailsButton: {
+      height: 54,
+      paddingHorizontal: 10, // Ajusta el padding horizontal si es necesario
+      marginLeft: 5,
       backgroundColor: '#A9744C',
-      borderRadius: 10,
-      paddingVertical:10,
-      paddingHorizontal:40,
+      borderColor: '#F2DCC2',
+      borderRadius: 6,
+      borderWidth: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  detailsButtonText: {
+      color: '#F2DCC2',
+      fontSize: 20,
+  },
+  checkOrder: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: '#A9744C',
+      borderRadius: 6,
+      padding: 5,
+      borderWidth: 2,
+      borderColor: '#F2DCC2',
+      marginLeft:20,
+  },
+  checkOrderText: {
+      color: '#F2DCC2',
+      fontSize: 18,
+      padding: 0,
+  },
+  cartIcon: {
+      height: 40,
+      padding: 0,
+  },
+  cartView:{
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  sumSubView:{
+    width:250,
+    flex: 1,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+  },
+  sumSubButtom:{
+    alignItems: 'center',
+    justifyContent:'center',
+    backgroundColor: '#A9744C',
+    borderRadius: 10,
+    height:50,
+    width:60,
+  },
+  sumSubText:{
+    color:'#F2DCC2',
+    fontSize:30,
+  },
+  add2CartText:{
+    color:'#F2DCC2',
+    fontSize:22,
+  },
+  add2CartButtom:{
+    marginTop:20,
+    backgroundColor: '#A9744C',
+    borderRadius: 10,
+    paddingVertical:10,
+    paddingHorizontal:40,
 
-    },
-    quantityText:{
-      color:'#F2DCC2',
-      fontSize:30,
-    },
-    cartdescription:{
-      marginVertical:10,
-      color:'#F2DCC2',
-      fontSize:20,
-      width:250,
-    },
+  },
+  quantityText:{
+    color:'#513A2C',
+    fontSize:30,
+  },
+  cartdescription:{
+    marginVertical:10,
+    color:'#513A2C',
+    fontSize:20,
+    width:250,
+  },
 })
 
 export default RestaurantFoodDisplay

@@ -1,22 +1,27 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
+import { useAppContext } from '../Scripts/AppContext'
+import { fakeData } from '../Data/fajeData'
+import ImgRatingQuantityDisplay from '../components/RestaurantScreen/ImgRatingQuantityDisplay'
+import FoodGeneralInformation from '../components/RestaurantScreen/FoodGeneralInformation'
+import { add2Cart } from '../Data/profileData'
 import { useNavigation } from '@react-navigation/native';
-import { useAppContext } from '../Scripts/AppContext';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { fakeData } from '../Data/fajeData';
-import ImgRatingQuantityDisplay from '../components/RestaurantScreen/ImgRatingQuantityDisplay';
-import FoodGeneralInformation from '../components/RestaurantScreen/FoodGeneralInformation';
-import { add2Cart } from '../Data/profileData';
+import HeaderStyle from '../components/HeaderStyle'
 
-const EspecificMealScreen = () => {
+const SearchScreen = () => {
 
+    const {Search} = useAppContext()
+
+    const lowerCase : string = Search.toLowerCase()
+    const SearchInput : string = lowerCase.trim()
     const navigation: any = useNavigation();
     const [isLiked,setIsLiked] = useState(require('../assets/Images/heart-emtpy.png'))
-    const {tempData} = useAppContext()
     const [isOpenCart,setIsOpenCart] = useState(false)
     const [Quantity,setQuantity] = useState<number>(0)
+    const [isOpen,setIsOpen] = useState(false)
 
     const addQuantity = () => setQuantity(Quantity + 1);
+    const OpenCloseDetails = () => setIsOpen(!isOpen);
 
     const removeQuantity = () => {
         if (Quantity > 0) { 
@@ -42,10 +47,11 @@ const EspecificMealScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+        <HeaderStyle LocationBar={false} MenuBar={false}/>
         <ScrollView>
             {fakeData.map((dataItem, dataIndex) => {
                 return dataItem.Meals.map((Meal, mealIndex) => {
-                    if (Meal.Name === tempData) {
+                    if (Meal.Name.includes(SearchInput)) {
                         return (
                             <View style={styles.restaurantFoodCardDiv} key={`${dataIndex}-${mealIndex}`}>
                                 <View style={styles.foodCardTopDiv}>
@@ -70,6 +76,9 @@ const EspecificMealScreen = () => {
                                     <View style={styles.heartDetailsDiv}>
                                         <TouchableOpacity onPressOut={()=>{handleIconChange()}}>
                                             <Image source={isLiked} style={styles.heartFood} />
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={styles.detailsButton} onPress={()=>{OpenCloseDetails()}}>
+                                            <Text style={styles.detailsButtonText} >{isOpen ? 'Cerrar Detalles' : 'Abrir Detalles'}</Text>
                                         </TouchableOpacity>
                                     </View>
                                     <TouchableOpacity onPress={() => OpenCloseCart()}>
@@ -117,6 +126,7 @@ const EspecificMealScreen = () => {
 const styles = StyleSheet.create({
     container:{
         width:'100%',
+        height:'100%',
         flex:1,
         alignItems:'center',
         justifyContent:'center',
@@ -124,8 +134,6 @@ const styles = StyleSheet.create({
     },
     restaurantFoodCardDiv: {
         backgroundColor: '#e8c9a0',
-        //backgroundColor: '#821b03',
-        //backgroundColor: '#91250c',
         borderRadius: 10,
         padding: 20,
         width: '95%',
@@ -138,7 +146,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: '#513A2C',
         marginBottom: 10,
-        fontWeight:'600',
       },
       foodCardBottomDiv: {
         flexDirection: 'row',
@@ -226,6 +233,21 @@ const styles = StyleSheet.create({
         fontSize:20,
         width:250,
       },
+      detailsButton: {
+        height: 54,
+        paddingHorizontal: 10, // Ajusta el padding horizontal si es necesario
+        marginLeft: 5,
+        backgroundColor: '#A9744C',
+        borderColor: '#F2DCC2',
+        borderRadius: 6,
+        borderWidth: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    detailsButtonText: {
+        color: '#F2DCC2',
+        fontSize: 20,
+    },
 })
 
-export default EspecificMealScreen
+export default SearchScreen
